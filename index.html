@@ -21,6 +21,8 @@
             --accent-light: #FFB996;
             --dark: #2D3748;
             --light: #F7FAFC;
+            --gray-900: #111827;
+            --gray-800: #1F2937;
             --glass: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.2);
         }
@@ -589,9 +591,9 @@
             line-height: 1.5;
         }
 
-        /* Footer */
+        /* Footer - Updated to bg-gray-900 */
         footer {
-            background: linear-gradient(135deg, #1a5f5c 0%, var(--dark) 100%);
+            background: var(--gray-900);
             color: white;
             padding: 4rem 0 2rem;
             margin-top: 4rem;
@@ -620,11 +622,14 @@
         .footer-links a {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            position: relative;
+            display: inline-block;
         }
 
         .footer-links a:hover {
             color: var(--secondary);
+            transform: translateX(5px);
         }
 
         .contact-info {
@@ -634,14 +639,75 @@
         .contact-info p {
             display: flex;
             align-items: center;
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .contact-info i {
             margin-right: 1rem;
             color: var(--secondary);
             width: 20px;
+            flex-shrink: 0;
+        }
+
+        /* Enhanced Email Link Styles */
+        .email-link {
+            color: var(--accent-light) !important;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none !important;
+            font-weight: 600;
+            border: 2px solid var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 158, 109, 0.2);
+            margin-left: 0.5rem;
+        }
+
+        .email-link:hover {
+            color: white !important;
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 158, 109, 0.4);
+            border-color: transparent;
+        }
+
+        .email-link:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(255, 158, 109, 0.4);
+        }
+
+        .email-link i {
+            color: inherit !important;
+            margin-right: 0 !important;
+        }
+
+        /* Copy Email Button */
+        .copy-email-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-left: 0.8rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .copy-email-btn:hover {
+            background: var(--secondary);
+            color: var(--gray-900);
+        }
+
+        .copy-email-btn.copied {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
         }
 
         .legal-links {
@@ -776,6 +842,20 @@
             
             .contact-info p {
                 justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .email-link {
+                margin-left: 0;
+                margin-top: 0.5rem;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .copy-email-btn {
+                margin-left: 0;
+                margin-top: 0.5rem;
+                width: 100%;
             }
         }
 
@@ -831,6 +911,11 @@
                 width: 60px;
                 height: 60px;
                 font-size: 1.8rem;
+            }
+            
+            .email-link {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
             }
         }
     </style>
@@ -1098,7 +1183,14 @@
                     <div class="contact-info">
                         <p>
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:talktoilec@gmail.com" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">talktoilec@gmail.com</a>
+                            <span>Email us at:</span>
+                            <a href="mailto:talktoilec@gmail.com" class="email-link">
+                                <i class="fas fa-paper-plane"></i>
+                                talktoilec@gmail.com
+                            </a>
+                            <button class="copy-email-btn" onclick="copyEmail()">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
                         </p>
                         <p>
                             <i class="fas fa-map-marker-alt"></i>
@@ -1174,7 +1266,62 @@
                     icon.style.transform = 'scale(1) rotate(0deg)';
                 });
             });
+
+            // Initialize copy email functionality
+            initCopyEmail();
         });
+
+        // Email copy functionality
+        function initCopyEmail() {
+            const email = 'talktoilec@gmail.com';
+            const copyBtn = document.querySelector('.copy-email-btn');
+            
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    copyToClipboard(email);
+                    
+                    // Show copied state
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    this.classList.add('copied');
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.classList.remove('copied');
+                    }, 2000);
+                });
+            }
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            // Create a temporary textarea element
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-999999px';
+            textarea.style.top = '-999999px';
+            document.body.appendChild(textarea);
+            
+            // Select and copy
+            textarea.focus();
+            textarea.select();
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                console.error('Failed to copy text:', err);
+            }
+            
+            // Clean up
+            document.body.removeChild(textarea);
+        }
+
+        // Copy email function (for inline onclick)
+        function copyEmail() {
+            const email = 'talktoilec@gmail.com';
+            copyToClipboard(email);
+        }
 
         // Keep Home highlighted on scroll
         window.addEventListener('scroll', function() {
