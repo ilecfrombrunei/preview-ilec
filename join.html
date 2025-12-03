@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us - i.lec | Intelligent Learning Empathetic Caregiver</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles - Enhanced from index.txt */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E7875;
+            --primary-light: #2A9D8F;
+            --secondary: #F5E4C3;
+            --accent: #FF9E6D;
+            --accent-light: #FFB996;
+            --dark: #2D3748;
+            --light: #F7FAFC;
+            --gray-900: #111827;
+            --gray-800: #1F2937;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.2);
+        }
+
+        /* Navigation - Updated from index.txt */
+        nav {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-top: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            background: rgba(30, 120, 117, 0.1);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover:not(.active) {
+            color: var(--primary);
+            background: rgba(30, 120, 117, 0.08);
+        }
+
+        .nav-links .join-button {
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        .nav-links .join-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 158, 109, 0.6);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(255, 158, 109, 0.7);
+            }
+            100% {
+                box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            }
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a5f5c 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #F5E4C3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        /* Enhanced Join Options */
+        .join-options {
+            background: linear-gradient(135deg, #F0F7F7 0%, #E8F4F4 100%);
+            position: relative;
+        }
+
+        .options-grid-2x2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .option-card {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .option-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px rgba(30, 120, 117, 0.2);
+        }
+
+        .option-icon {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #E8F4F4 0%, #F0F9F9 100%);
+            border-radius: 25px;
+            font-size: 3rem;
+            color: var(--primary);
+            margin: 0 auto 2rem;
+            box-shadow: 0 15px 35px rgba(30, 120, 117, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .option-card:hover .option-icon {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .option-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .option-features {
+            text-align: left;
+            margin: 2.5rem 0;
+        }
+
+        .option-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            transition: background 0.3s ease;
+        }
+
+        .option-feature:hover {
+            background: rgba(30, 120, 117, 0.05);
+        }
+
+        .option-feature i {
+            color: var(--primary);
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .option-button {
+            display: inline-block;
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.2);
+        }
+
+        .option-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(30, 120, 117, 0.3);
+        }
+
+        .option-button.accent {
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
+            box-shadow: 0 10px 25px rgba(255, 158, 109, 0.2);
+        }
+
+        .option-button.accent:hover {
+            box-shadow: 0 15px 35px rgba(255, 158, 109, 0.3);
+        }
+
+        /* Enhanced Features Section */
+        .features {
+            background: linear-gradient(135deg, #ffffff 0%, #F7FAFC 100%);
+        }
+
+        .features-grid-3x2 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #E8F4F4 0%, #F0F9F9 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.1);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        /* Why Join Section */
+        .why-join {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a5f5c 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .benefit-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        /* Enhanced Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #F0F7F7 0%, #E8F4F4 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-top: 5px solid var(--accent);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .contact-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(30, 120, 117, 0.05);
+            transition: background 0.3s ease;
+        }
+
+        .contact-method:hover {
+            background: rgba(30, 120, 117, 0.1);
+        }
+
+        .contact-method-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 15px;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer - Updated from index.txt */
+        footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-info i {
+            margin-right: 1rem;
+            color: var(--secondary);
+            width: 20px;
+            flex-shrink: 0;
+        }
+
+        .legal-links {
+            list-style: none;
+        }
+
+        .legal-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .legal-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .legal-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .options-grid-2x2,
+            .features-grid-3x2,
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .options-grid-2x2,
+            .features-grid-3x2,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .option-card {
+                padding: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .contact-info p {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 0.8rem;
+            }
+            
+            .option-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+            
+            .benefit-icon {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                i<div class="logo-dot"></div>lec
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="assessment.html">Assessment</a></li>
+                <li><a href="join.html" class="join-button active">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Join Our Wellness Community</h1>
+            <p>Create your account to access personalized stress management tools, track your progress, and connect with others on similar journeys. Take the first step towards better mental wellness today.</p>
+            <div class="tag">
+                <i class="fas fa-users"></i>
+                Join our supportive community
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Options Section -->
+    <section class="join-options">
+        <div class="container">
+            <h2 class="section-title">Get Started With i.lec</h2>
+            <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">Choose how you'd like to begin your wellness journey with us.</p>
+            
+            <div class="options-grid-2x2">
+                <!-- Create Account Option -->
+                <div class="option-card">
+                    <div class="option-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="option-title">Create Account</h3>
+                    <p class="option-description">Join our community and start your wellness journey with personalized tools and 24/7 support.</p>
+                    
+                    <div class="option-features">
+                        <div class="option-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Personalized AI Stress Management Plan</strong> - Tailored to your unique patterns</div>
+                        </div>
+                        <div class="option-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Access to Wellness Resources</strong> - Expert-curated content library</div>
+                        </div>
+                        <div class="option-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Progress Tracking & Analytics</strong> - Visualize your wellness journey</div>
+                        </div>
+                        <div class="option-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Community Support Network</strong> - Connect with like-minded individuals</div>
+                        </div>
+                    </div>
+                    
+                    <a href="signup.html" class="option-button">
+                        <i class="fas fa-user-plus"></i> Create Your Free Account
+                    </a>
+                    <p style="font-size: 0.9rem; margin-top: 1rem; color: var(--primary);">Completely free • No payment required</p>
+                </div>
+                
+                <!-- Sign In Option -->
+                <div class="option-card">
+                    <div class="option-icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </div>
+                    <h3 class="option-title">Sign In</h3>
+                    <p class="option-description">Welcome back! Continue your wellness journey and access your personalized dashboard.</p>
+                    
+                    <div class="option-features">
+                        <div class="option-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Access Your Dashboard</strong> - Pick up right where you left off</div>
+                        </div>
+                        <div class="option-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>View Progress History</strong> - Track your improvement over time</div>
+                        </div>
+                        <div class="option-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Update Preferences</strong> - Customize your wellness experience</div>
+                        </div>
+                        <div class="option-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Continue AI Learning</strong> - Your assistant picks up where you stopped</div>
+                        </div>
+                    </div>
+                    
+                    <a href="login.html" class="option-button accent">
+                        <i class="fas fa-sign-in-alt"></i> Sign In to Your Account
+                    </a>
+                    <p style="font-size: 0.9rem; margin-top: 1rem; color: var(--accent);">Secure login • Your data is protected</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">What You'll Get As A Member</h2>
+            <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">Experience comprehensive mental wellness support designed to fit seamlessly into your life.</p>
+            
+            <div class="features-grid-3x2">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">Personalized AI Assistant</h3>
+                    <p>Your own empathetic AI companion that learns your stress patterns and provides tailored support 24/7.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="feature-title">Progress Tracking</h3>
+                    <p>Visualize your stress management journey with detailed analytics, insights, and wellness milestones.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="feature-title">Exclusive Resources</h3>
+                    <p>Access premium content, guided meditation sessions, and expert-curated wellness materials.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Community Support</h3>
+                    <p>Connect with others on similar wellness journeys in our supportive, moderated community groups.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Multi-Device Access</h3>
+                    <p>Use i.lec on all your devices with seamless synchronization across web and mobile platforms.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Reminders</h3>
+                    <p>Get personalized reminders for wellness exercises, daily check-ins, and self-care activities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Join Section -->
+    <section class="why-join">
+        <div class="container">
+            <h2 style="color: white; text-align: center; margin-bottom: 3rem;">Why Join i.lec?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="benefit-title">Holistic Support</h3>
+                    <p>We address mental wellness from multiple angles - emotional, social, and practical - for comprehensive care.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="benefit-title">Safe & Private</h3>
+                    <p>Your privacy is our priority. All interactions are confidential and your data is securely protected.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="benefit-title">Always Accessible</h3>
+                    <p>Get support whenever you need it, especially during evenings and weekends when traditional options aren't available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Need Help Getting Started?</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon-wrapper">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>We're Here to Help</h3>
+                    <p>Have questions about joining i.lec? Need assistance with your account? Our dedicated support team is here to help you every step of the way.</p>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-method-details">
+                            <h4>WhatsApp Support</h4>
+                            <p><strong>+673-7311301</strong></p>
+                            <p>Available 24/7 for quick assistance and guidance</p>
+                            <a href="https://wa.me/6737311301" class="contact-link" target="_blank">
+                                Message us on WhatsApp <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-method-details">
+                            <h4>Email Support</h4>
+                            <p><strong>talktoilec@gmail.com</strong></p>
+                            <p>We typically respond within 24 hours</p>
+                            <a href="mailto:talktoilec@gmail.com?subject=Inquiry about i.lec" class="contact-link" target="_blank">
+                                Send us an email <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon-wrapper">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>Frequently Asked Questions</h3>
+                    
+                    <div class="faq-item" style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(30, 120, 117, 0.1);">
+                        <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Is i.lec really free?</h4>
+                        <p>Yes! i.lec is completely free to use. We believe mental wellness support should be accessible to everyone.</p>
+                    </div>
+                    
+                    <div class="faq-item" style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(30, 120, 117, 0.1);">
+                        <h4 style="color: var(--primary); margin-bottom: 0.5rem;">How does the AI assistant work?</h4>
+                        <p>Our AI learns from your interactions and patterns to provide personalized stress management strategies and empathetic support when you need it most.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Is my data secure and private?</h4>
+                        <p>Absolutely. We use bank-level encryption and comply with data protection regulations. Your privacy and security are our top priorities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 1.5rem;">Start Your Wellness Journey Today</h2>
+            <p style="max-width: 700px; margin: 0 auto 3rem; font-size: 1.2rem; opacity: 0.9;">Join our community and begin your journey towards better mental wellness with i.lec's innovative platform. Your path to better mental wellness starts here.</p>
+            <a href="#join-options" class="cta-button">
+                <i class="fas fa-rocket"></i> Create Your Free Account Now
+            </a>
+            <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">Completely free • No commitment required</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>i.lec</h3>
+                    <p>Intelligent Learning Empathetic Caregiver - Providing 24/7 accessible mental wellness support to prevent burnout and empower individuals.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="assessment.html">Assessment</a></li>
+                        <li><a href="join.html">Join Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email:</span>
+                            <a href="mailto:talktoilec@gmail.com" style="color: var(--accent-light); text-decoration: none; margin-left: 0.5rem;">
+                                talktoilec@gmail.com
+                            </a>
+                        </p>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Based in Brunei Darussalam
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="legal-links">
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#cookies">Cookie Policy</a></li>
+                        <li><a href="#accessibility">Accessibility Statement</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 i.lec - Intelligent Learning Empathetic Caregiver. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">"We've Got You. Here for your healing, not just your hustle."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Animate elements on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animation for option cards
+        const optionCards = document.querySelectorAll('.option-card');
+        const featureCards = document.querySelectorAll('.feature-card');
+        const contactCards = document.querySelectorAll('.contact-card');
+        const benefitCards = document.querySelectorAll('.benefit-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // Set initial states
+        optionCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        featureCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        contactCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        benefitCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+        
+        // Smooth scroll for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.join-options').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // Highlight active nav link
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+
+        // Add hover effects to contact methods
+        const contactMethods = document.querySelectorAll('.contact-method');
+        contactMethods.forEach(method => {
+            method.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.contact-method-icon');
+                if (icon) {
+                    icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    icon.style.transition = 'transform 0.3s ease';
+                }
+            });
+            
+            method.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.contact-method-icon');
+                if (icon) {
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
