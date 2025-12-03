@@ -15,10 +15,14 @@
 
         :root {
             --primary: #1E7875;
+            --primary-light: #2A9D8F;
             --secondary: #F5E4C3;
-            --accent: #FF6B6B;
+            --accent: #FF9E6D;
+            --accent-light: #FFB996;
             --dark: #2D3748;
             --light: #F7FAFC;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
 
         body {
@@ -26,12 +30,17 @@
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        section {
+            padding: 5rem 0;
         }
 
         /* Typography */
@@ -55,26 +64,61 @@
 
         p {
             margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
         }
 
         .tag {
             display: inline-block;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
             padding: 0.5rem 1.5rem;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.2);
+        }
+
+        .sdg-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         /* Navigation */
         nav {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary);
         }
 
         .nav-container {
@@ -85,440 +129,484 @@
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 900;
             color: var(--primary);
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-top: 8px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
+            align-items: center;
+            gap: 1.5rem;
         }
 
         .nav-links li {
-            margin-left: 2rem;
+            position: relative;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 600;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
         }
 
-        .nav-links a:hover {
+        .nav-links a.active {
             color: var(--primary);
+            background: rgba(30, 120, 117, 0.1);
         }
 
-        .cta-button {
-            background-color: var(--primary);
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover:not(.active) {
+            color: var(--primary);
+            background: rgba(30, 120, 117, 0.08);
+        }
+
+        .nav-links .join-button {
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
             color: white;
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
             display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
         }
 
-        .cta-button:hover {
-            background-color: #166663;
+        .nav-links .join-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(255, 158, 109, 0.6);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(255, 158, 109, 0.7);
+            }
+            100% {
+                box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            }
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #2A9D8F 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #1a5f5c 100%);
             color: white;
             padding: 6rem 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero h1 {
-            margin-bottom: 1.5rem;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .acronym-animation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            min-height: 120px;
+        }
+
+        .acronym-letter {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #F5E4C3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+            animation: float 6s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.2s);
+        }
+
+        .acronym-meaning {
+            font-size: 1.8rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             max-width: 800px;
             margin: 0 auto 2rem;
+            opacity: 0.9;
         }
 
-        .mission-box {
-            background-color: white;
+        /* Enhanced Wellness Challenge Section */
+        .wellness-challenge {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             color: var(--dark);
-            max-width: 800px;
+            max-width: 1200px;
             margin: 2rem auto 0;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 3.5rem;
+            border-radius: 25px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+            animation-delay: 0.5s;
         }
 
-        .mission-box h2 {
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .wellness-title {
+            text-align: center;
             color: var(--primary);
+            margin-bottom: 2.5rem;
+            font-size: 2.2rem;
+            position: relative;
         }
 
-        /* Problem Statement Section */
-        .problem {
-            padding: 5rem 0;
-            background-color: white;
+        .wellness-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
         }
 
-        .problem-content {
-            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
-            border: 2px solid var(--primary);
-            border-radius: 15px;
-            padding: 3rem;
-            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.1);
+        .wellness-subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            color: #555;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .problem-icon {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Benefits Section */
-        .benefits {
-            padding: 5rem 0;
-            background-color: var(--secondary);
-        }
-
-        .benefits-grid {
+        /* Infographic Grid */
+        .infographic-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .infographic-item {
+            background: linear-gradient(135deg, #f8fdfd 0%, #f0f9f9 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            border: 2px solid var(--primary-light);
+            box-shadow: 0 10px 30px rgba(30, 120, 117, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .infographic-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(30, 120, 117, 0.15);
+        }
+
+        .infographic-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 20px;
+            font-size: 2.2rem;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.2);
+        }
+
+        .infographic-content {
+            flex: 1;
+        }
+
+        .infographic-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .infographic-content p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .benefit-card {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-        }
-
-        .benefit-card:hover {
-            border-left-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .benefit-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 5rem 0;
-            background-color: white;
-        }
-
-        .section-title {
+        .stat-item {
             text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary);
+            padding: 2.5rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid var(--accent);
         }
 
-        .features-grid {
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Benefits Section - Clean 3x2 Grid */
+        .benefits {
+            background: linear-gradient(135deg, #F0F7F7 0%, #E8F4F4 100%);
+            position: relative;
+        }
+
+        .bento-grid-3x2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, auto);
             gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .bento-item {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 25px 50px rgba(30, 120, 117, 0.15);
+        }
+
+        .bento-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #E8F4F4 0%, #F0F9F9 100%);
+            border-radius: 20px;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .bento-item:hover .bento-icon {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .bento-content h3 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .bento-content p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Features Section - 3x2 Grid */
+        .features {
+            background: linear-gradient(135deg, #ffffff 0%, #F7FAFC 100%);
+        }
+
+        .features-grid-3x2 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .feature-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid var(--primary);
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .feature-icon {
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 1.5rem;
-        }
-
-        /* Resources Section */
-        .resources {
-            padding: 5rem 0;
-            background-color: var(--light);
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .resource-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .resource-header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1.5rem;
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
-        }
-
-        .resource-icon {
-            font-size: 1.5rem;
-            margin-right: 1rem;
-        }
-
-        .resource-content {
-            padding: 1.5rem;
-        }
-
-        .resource-title {
-            color: var(--dark);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .resource-desc {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .resource-meta {
-            display: flex;
-            justify-content: space-between;
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .download-btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: background-color 0.3s;
-        }
-
-        .download-btn:hover {
-            background-color: #166663;
-        }
-
-        /* Vision Section */
-        .vision {
-            padding: 5rem 0;
-            background-color: var(--secondary);
-        }
-
-        .vision-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .vision-text h2 {
-            color: var(--primary);
-        }
-
-        .vision-points {
-            margin-top: 1.5rem;
-        }
-
-        .vision-point {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .vision-point i {
-            color: var(--primary);
-            margin-right: 1rem;
-            margin-top: 0.25rem;
-        }
-
-        .vision-card {
-            background-color: var(--primary);
-            color: white;
-            padding: 3rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .vision-card i {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--secondary);
-        }
-
-        /* SDG Section */
-        .sdg {
-            padding: 5rem 0;
-            background-color: white;
-        }
-
-        .sdg-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .sdg-badge {
-            display: inline-flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--primary) 0%, #2A9D8F 100%);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-weight: bold;
-            margin: 0.5rem 0.5rem 0.5rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .sdg-badge i {
-            margin-right: 0.5rem;
-        }
-
-        .sdg-card {
-            background: linear-gradient(135deg, var(--primary) 0%, #2A9D8F 100%);
-            color: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.2);
-        }
-
-        /* Audience Section */
-        .audience {
-            padding: 5rem 0;
-            background-color: white;
-        }
-
-        .audience-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .audience-card {
-            background-color: var(--light);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .audience-card h3 {
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .audience-card h3 i {
-            margin-right: 0.75rem;
-        }
-
-        .audience-list {
-            list-style: none;
-        }
-
-        .audience-list li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .audience-list i {
-            color: var(--primary);
-            margin-right: 0.75rem;
-            margin-top: 0.25rem;
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, var(--primary) 0%, #2A9D8F 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .cta h2 {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            font-size: 1.2rem;
-        }
-
-        .cta-buttons {
-            display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+            background: linear-gradient(135deg, #E8F4F4 0%, #F0F9F9 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.1);
+            flex-shrink: 0;
         }
 
-        .secondary-button {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
         }
 
-        .secondary-button:hover {
-            background-color: white;
-            color: var(--primary);
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
         /* Footer */
         footer {
-            background-color: var(--dark);
+            background: linear-gradient(135deg, #1a5f5c 0%, var(--dark) 100%);
             color: white;
-            padding: 3rem 0 1.5rem;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
         }
 
-        .footer-content {
+        .footer-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
         }
 
-        .footer-column h3 {
+        .footer-section h3 {
             color: var(--secondary);
             margin-bottom: 1.5rem;
+            font-size: 1.5rem;
         }
 
         .footer-links {
@@ -526,51 +614,84 @@
         }
 
         .footer-links li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.8rem;
         }
 
         .footer-links a {
-            color: #CBD5E0;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .footer-links a:hover {
-            color: white;
+            color: var(--secondary);
         }
 
-        .social-links {
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+
+        .contact-info p {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: background-color 0.3s;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        .social-links a:hover {
-            background-color: var(--primary);
+        .contact-info i {
+            margin-right: 1rem;
+            color: var(--secondary);
+            width: 20px;
+        }
+
+        .legal-links {
+            list-style: none;
+        }
+
+        .legal-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .legal-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .legal-links a:hover {
+            color: var(--secondary);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 1.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #A0AEC0;
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 1200px) {
+            .bento-grid-3x2,
+            .features-grid-3x2,
+            .infographic-grid,
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .wellness-challenge {
+                max-width: 95%;
+            }
+        }
+
+        @media (max-width: 992px) {
             h1 {
                 font-size: 2.5rem;
             }
@@ -579,6 +700,34 @@
                 font-size: 2rem;
             }
             
+            h3 {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .bento-grid-3x2,
+            .features-grid-3x2,
+            .infographic-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .wellness-challenge {
+                padding: 2.5rem;
+            }
+            
+            .infographic-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
             .nav-container {
                 flex-direction: column;
                 padding: 1rem 0;
@@ -588,23 +737,100 @@
                 margin-top: 1rem;
                 flex-wrap: wrap;
                 justify-content: center;
-            }
-            
-            .nav-links li {
-                margin: 0.5rem;
+                gap: 0.5rem;
             }
             
             .hero {
                 padding: 4rem 0;
             }
             
-            .vision-content, .audience-content, .sdg-content {
-                grid-template-columns: 1fr;
+            .acronym-letter {
+                font-size: 3.5rem;
             }
             
-            .cta-buttons {
+            .acronym-meaning {
+                font-size: 1.4rem;
+            }
+            
+            .wellness-title {
+                font-size: 1.8rem;
+            }
+            
+            .wellness-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .stat-number {
+                font-size: 2.8rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .contact-info p {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .acronym-letter {
+                font-size: 2.8rem;
+            }
+            
+            .acronym-meaning {
+                font-size: 1.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
                 flex-direction: column;
                 align-items: center;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 0.8rem;
+            }
+            
+            .wellness-challenge {
+                padding: 2rem;
+            }
+            
+            .infographic-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+            
+            .bento-icon,
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -613,13 +839,15 @@
     <!-- Navigation -->
     <nav>
         <div class="container nav-container">
-            <div class="logo">i.lec</div>
+            <div class="logo">
+                i<div class="logo-dot"></div>lec
+            </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#problem">The Problem</a></li>
-                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#resources">Resources</a></li>
-                <li><a href="#join" class="cta-button">Join Us</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+                <li><a href="#join" class="join-button">Join Us</a></li>
             </ul>
         </div>
     </nav>
@@ -627,31 +855,86 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <h1>Intelligent Learning Empathetic Caregiver</h1>
+            <div class="acronym-animation">
+                <div class="acronym-letter" style="--i:0">I</div>
+                <div class="acronym-letter" style="--i:1">.</div>
+                <div class="acronym-letter" style="--i:2">L</div>
+                <div class="acronym-letter" style="--i:3">E</div>
+                <div class="acronym-letter" style="--i:4">C</div>
+            </div>
+            
+            <div class="acronym-meaning">
+                Intelligent Learning Empathetic Caregiver
+            </div>
+            
             <p>"We've Got You. Here for your healing, not just your hustle."</p>
             
-            <div class="mission-box">
-                <h2>Our Mission</h2>
-                <p>Empowering individuals with effective stress management tools to reduce growing mental health concerns in our community.</p>
-                
-                <div class="sdg-badge">
-                    <i class="fas fa-bullseye"></i>
-                    Aligned with UN SDG 3 & Wawasan 2035
-                </div>
+            <div class="sdg-badge">
+                <i class="fas fa-bullseye"></i>
+                Aligned with UN SDG 3 & Wawasan 2035
             </div>
-        </div>
-    </section>
-
-    <!-- Problem Statement Section -->
-    <section id="problem" class="problem">
-        <div class="container">
-            <h2 class="section-title">The Problem We're Solving</h2>
-            <div class="problem-content">
-                <div class="problem-icon">
-                    <i class="fas fa-exclamation-triangle"></i>
+            
+            <!-- Enhanced Wellness Challenge Section -->
+            <div class="wellness-challenge">
+                <h2 class="wellness-title">The Modern Wellness Challenge</h2>
+                <p class="wellness-subtitle">In today's fast-paced world, emotional fatigue is the silent epidemic. Traditional support systems can't keep up with the growing need for accessible, timely mental wellness care.</p>
+                
+                <div class="infographic-grid">
+                    <div class="infographic-item">
+                        <div class="infographic-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="infographic-content">
+                            <h3>Silent Mental Load</h3>
+                            <p>70% of professionals carry invisible stress that affects their daily performance and well-being, often going unaddressed until crisis points.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="infographic-item">
+                        <div class="infographic-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="infographic-content">
+                            <h3>Timing Disconnect</h3>
+                            <p>Peak stress occurs during evenings and weekends when traditional support options are least available, creating dangerous gaps in care.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="infographic-item">
+                        <div class="infographic-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="infographic-content">
+                            <h3>Prevention Gap</h3>
+                            <p>Early intervention could prevent 65% of mental health crises, but current systems focus on treatment rather than prevention.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="infographic-item">
+                        <div class="infographic-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="infographic-content">
+                            <h3>Growing Awareness Gap</h3>
+                            <p>Awareness of mental wellness is increasing 3x faster than accessible support options, leaving millions without proper care.</p>
+                        </div>
+                    </div>
                 </div>
-                <p><strong>Stress-related mental health issues are escalating at an alarming rate</strong>, with working adults and students experiencing unprecedented levels of burnout, anxiety, and emotional fatigue. Traditional support systems are overwhelmed, expensive, or inaccessible when needed most.</p>
-                <p>In Brunei Darussalam, as we work toward Wawasan 2035's Goal 2 of creating "A high quality of life," mental wellness becomes a critical component of national development and individual fulfillment.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">70%</span>
+                        <div class="stat-label">Professionals experience workplace stress</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">65%</span>
+                        <div class="stat-label">Reduction in crisis with early intervention</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <div class="stat-label">Support gap during peak stress hours</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -660,474 +943,263 @@
     <section id="benefits" class="benefits">
         <div class="container">
             <h2 class="section-title">Tangible Benefits You'll Experience</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
+            <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">Experience measurable improvements in mental wellness through our innovative approach.</p>
+            
+            <div class="bento-grid-3x2">
+                <!-- Benefit 1 -->
+                <div class="bento-item">
+                    <div class="bento-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>Preventive Care</h3>
-                    <p>Catch stress signs early with AI-powered mood tracking and intervention before issues escalate into crises, saving you time, money, and emotional distress.</p>
+                    <div class="bento-content">
+                        <h3>Preventive Care</h3>
+                        <p>AI-powered mood tracking catches stress signs early, preventing escalation.</p>
+                    </div>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
+
+                <!-- Benefit 2 -->
+                <div class="bento-item">
+                    <div class="bento-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
-                    <h3>Immediate Relief</h3>
-                    <p>Get instant support during panic attacks, stressful moments, or sleepless nights with our 24/7 AI companion—no appointments, no waiting rooms.</p>
+                    <div class="bento-content">
+                        <h3>Instant Support</h3>
+                        <p>24/7 AI companion provides immediate relief during challenging moments.</p>
+                    </div>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
+
+                <!-- Benefit 3 -->
+                <div class="bento-item">
+                    <div class="bento-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Personalized Growth</h3>
-                    <p>Receive tailored strategies that adapt to your unique stress patterns, lifestyle, and progress—evolving with you as you build emotional resilience.</p>
+                    <div class="bento-content">
+                        <h3>Personalized Growth</h3>
+                        <p>Tailored strategies adapt to your unique stress patterns and progress.</p>
+                    </div>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
+
+                <!-- Benefit 4 -->
+                <div class="bento-item">
+                    <div class="bento-icon">
                         <i class="fas fa-dollar-sign"></i>
                     </div>
-                    <h3>Cost-Effective</h3>
-                    <p>Access premium mental wellness support for less than 10% of traditional therapy costs, with corporate plans reducing workplace burnout expenses by up to 40%.</p>
+                    <div class="bento-content">
+                        <h3>Cost-Effective</h3>
+                        <p>Access premium support for less than 10% of traditional therapy costs.</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 5 -->
+                <div class="bento-item">
+                    <div class="bento-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="bento-content">
+                        <h3>Time-Efficient</h3>
+                        <p>5-minute daily check-ins prevent lengthy therapy sessions, fitting your schedule.</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 6 -->
+                <div class="bento-item">
+                    <div class="bento-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="bento-content">
+                        <h3>National Impact</h3>
+                        <p>Contribute to Brunei's Wawasan 2035 goals while improving your well-being.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title">i.lec - Your Comprehensive Stress Management System</h2>
-            <div class="features-grid">
+            <h2 class="section-title">How i.lec Delivers Tangible Value</h2>
+            <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">Our comprehensive system provides measurable benefits through innovative technology and personalized support.</p>
+            
+            <div class="features-grid-3x2">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-microphone"></i>
                     </div>
-                    <h3>Talk and Get Support</h3>
-                    <p><strong>AI Vocal Assistant:</strong> Get empathetic, voice-based interaction for immediate support, especially during peak stress hours (evenings).</p>
+                    <h3>AI Vocal Assistant</h3>
+                    <p>Empathetic voice-based support available 24/7, especially during peak stress hours.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>Always Here to Help</h3>
-                    <p><strong>24/7 Chatbot System:</strong> Access instant, non-judgmental support, mental health resources, and information anytime, anywhere.</p>
-                </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-clipboard-list"></i>
                     </div>
-                    <h3>Strategies Just For You</h3>
-                    <p><strong>Personalized Management:</strong> Receive tailored strategies based on your unique needs and preferences, and continuously adapt to your progress.</p>
+                    <h3>Personalized Management</h3>
+                    <p>Tailored strategies continuously adapt to your progress for higher success rates.</p>
                 </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>24/7 Chatbot System</h3>
+                    <p>Instant, non-judgmental support and mental health resources anytime, anywhere.</p>
+                </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-book-open"></i>
                     </div>
-                    <h3>Wellness at Your Fingertips</h3>
-                    <p><strong>Resource Library:</strong> Browse a library of curated content for effective stress management and mental wellness.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources Section -->
-    <section id="resources" class="resources">
-        <div class="container">
-            <h2 class="section-title">Free Stress Management Resources</h2>
-            <p class="section-subtitle" style="text-align: center; color: #666; margin-bottom: 2rem;">Download our comprehensive stress management guides and tools</p>
-            
-            <div class="resources-grid">
-                <!-- Resource Cards based on your screenshot files -->
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <i class="fas fa-file-pdf resource-icon"></i>
-                        <h3>Stress-Free Stress Management Plan</h3>
-                    </div>
-                    <div class="resource-content">
-                        <div class="resource-meta">
-                            <span><i class="far fa-file"></i> PDF</span>
-                            <span><i class="far fa-clock"></i> 12/3/2025</span>
-                        </div>
-                        <p class="resource-desc">Complete guide to creating your personalized stress management plan with actionable steps.</p>
-                        <a href="#" class="download-btn">Download (1.1 MB)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <i class="fas fa-file-word resource-icon"></i>
-                        <h3>Fear Setting for Stress Reduction</h3>
-                    </div>
-                    <div class="resource-content">
-                        <div class="resource-meta">
-                            <span><i class="far fa-file-word"></i> Word Doc</span>
-                            <span><i class="far fa-clock"></i> 12/3/2025</span>
-                        </div>
-                        <p class="resource-desc">Technique to identify and confront fears that contribute to stress and anxiety.</p>
-                        <a href="#" class="download-btn">Download (14 KB)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <i class="fas fa-file-word resource-icon"></i>
-                        <h3>Healthy Compartmentalization</h3>
-                    </div>
-                    <div class="resource-content">
-                        <div class="resource-meta">
-                            <span><i class="far fa-file-word"></i> Word Doc</span>
-                            <span><i class="far fa-clock"></i> 12/3/2025</span>
-                        </div>
-                        <p class="resource-desc">Learn to separate work, personal life, and other areas to reduce stress spillover.</p>
-                        <a href="#" class="download-btn">Download (14 KB)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <i class="fas fa-file-word resource-icon"></i>
-                        <h3>House Plant Stress Reduction</h3>
-                    </div>
-                    <div class="resource-content">
-                        <div class="resource-meta">
-                            <span><i class="far fa-file-word"></i> Word Doc</span>
-                            <span><i class="far fa-clock"></i> 12/3/2025</span>
-                        </div>
-                        <p class="resource-desc">How incorporating plants into your environment can significantly reduce stress levels.</p>
-                        <a href="#" class="download-btn">Download (14 KB)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <i class="fas fa-file-word resource-icon"></i>
-                        <h3>Breaking Down Stress</h3>
-                    </div>
-                    <div class="resource-content">
-                        <div class="resource-meta">
-                            <span><i class="far fa-file-word"></i> Word Doc</span>
-                            <span><i class="far fa-clock"></i> 12/3/2025</span>
-                        </div>
-                        <p class="resource-desc">Techniques to analyze and break down stressors into manageable components.</p>
-                        <a href="#" class="download-btn">Download (16 KB)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <i class="fas fa-file-word resource-icon"></i>
-                        <h3>Combating Bad Emotions</h3>
-                    </div>
-                    <div class="resource-content">
-                        <div class="resource-meta">
-                            <span><i class="far fa-file-word"></i> Word Doc</span>
-                            <span><i class="far fa-clock"></i> 12/3/2025</span>
-                        </div>
-                        <p class="resource-desc">Mindfulness techniques to combat negative emotions and cultivate positive ones.</p>
-                        <a href="#" class="download-btn">Download (14 KB)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <i class="fas fa-file-word resource-icon"></i>
-                        <h3>Sleep When Stressed</h3>
-                    </div>
-                    <div class="resource-content">
-                        <div class="resource-meta">
-                            <span><i class="far fa-file-word"></i> Word Doc</span>
-                            <span><i class="far fa-clock"></i> 12/3/2025</span>
-                        </div>
-                        <p class="resource-desc">Practical tips to overcome stress-induced insomnia and get restorative sleep.</p>
-                        <a href="#" class="download-btn">Download (14 KB)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <i class="fas fa-file-word resource-icon"></i>
-                        <h3>One Day Stress Combat</h3>
-                    </div>
-                    <div class="resource-content">
-                        <div class="resource-meta">
-                            <span><i class="far fa-file-word"></i> Word Doc</span>
-                            <span><i class="far fa-clock"></i> 12/3/2025</span>
-                        </div>
-                        <p class="resource-desc">24-hour plan to reset your stress levels and establish healthy routines.</p>
-                        <a href="#" class="download-btn">Download (14 KB)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <i class="fas fa-file-word resource-icon"></i>
-                        <h3>Quick Stress Management Tips</h3>
-                    </div>
-                    <div class="resource-content">
-                        <div class="resource-meta">
-                            <span><i class="far fa-file-word"></i> Word Doc</span>
-                            <span><i class="far fa-clock"></i> 12/3/2025</span>
-                        </div>
-                        <p class="resource-desc">Immediate actions you can take when feeling overwhelmed by stress.</p>
-                        <a href="#" class="download-btn">Download (16 KB)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <i class="fas fa-file-word resource-icon"></i>
-                        <h3>Stress Management Checklist</h3>
-                    </div>
-                    <div class="resource-content">
-                        <div class="resource-meta">
-                            <span><i class="far fa-file-word"></i> Word Doc</span>
-                            <span><i class="far fa-clock"></i> 12/3/2025</span>
-                        </div>
-                        <p class="resource-desc">Comprehensive checklist for maintaining long-term stress management habits.</p>
-                        <a href="#" class="download-btn">Download (15 KB)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-header">
-                        <i class="fas fa-file-word resource-icon"></i>
-                        <h3>Common Causes of Stress</h3>
-                    </div>
-                    <div class="resource-content">
-                        <div class="resource-meta">
-                            <span><i class="far fa-file-word"></i> Word Doc</span>
-                            <span><i class="far fa-clock"></i> 12/3/2025</span>
-                        </div>
-                        <p class="resource-desc">Identify the three most common stress triggers in daily life and how to address them.</p>
-                        <a href="#" class="download-btn">Download (14 KB)</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Vision Section -->
-    <section class="vision">
-        <div class="container">
-            <div class="vision-content">
-                <div class="vision-text">
-                    <span class="tag">OUR VISION</span>
-                    <h2>A World Where Mental Wellbeing is Non-Negotiable</h2>
-                    <p>i.lec's vision is to create a world where individuals can thrive emotionally and mentally, free from the burdens of stress and anxiety, by providing accessible, daily, AI-powered support.</p>
-                    <div class="vision-points">
-                        <div class="vision-point">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Normalize emotional well-being.</p>
-                        </div>
-                        <div class="vision-point">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Offer preventive, not just reactive, care.</p>
-                        </div>
-                        <div class="vision-point">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Empower the community with accessible tools.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="vision-card">
-                    <i class="fas fa-sun"></i>
-                    <h3>Your Pocket Zen Master</h3>
-                    <p>"i.lec is not just a system; it's your pocket Zen master, your stress sabbatical. Wave goodbye to those nerve-racking nights and hello to a serenity-filled life."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SDG Alignment Section -->
-    <section class="sdg">
-        <div class="container">
-            <div class="sdg-content">
-                <div>
-                    <h2 class="section-title">Aligned with Global & National Goals</h2>
-                    <p>i.lec directly contributes to <strong>Brunei's Wawasan 2035 Goal 2: A High Quality of Life</strong> and the <strong>UN Sustainable Development Goal 3: Good Health and Well-being</strong> by creating accessible mental wellness infrastructure for all.</p>
-                    
-                    <div style="margin: 2rem 0;">
-                        <span class="sdg-badge">
-                            <i class="fas fa-bullseye"></i>
-                            UN SDG 3: Good Health & Well-being
-                        </span>
-                        <span class="sdg-badge">
-                            <i class="fas fa-flag"></i>
-                            Wawasan 2035 Goal 2
-                        </span>
-                    </div>
-                    
-                    <p>Our platform supports national development by reducing mental health burden on healthcare systems, enhancing workforce productivity, and promoting holistic well-being across all age groups in Brunei Darussalam.</p>
+                    <h3>Resource Library</h3>
+                    <p>Curated content with evidence-based techniques for effective stress management.</p>
                 </div>
                 
-                <div class="sdg-card">
-                    <h3 style="color: white; margin-bottom: 1.5rem;">National Impact Metrics</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: center;">
-                        <div>
-                            <div style="font-size: 2.5rem; font-weight: 900; color: var(--secondary);">30%</div>
-                            <div style="font-size: 0.9rem;">Targeted stress reduction</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 2.5rem; font-weight: 900; color: var(--secondary);">50K+</div>
-                            <div style="font-size: 0.9rem;">Bruneians served by 2030</div>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
                     </div>
+                    <h3>Progress Tracking</h3>
+                    <p>Detailed analytics help you stay on track and celebrate wellness milestones.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Audience Section -->
-    <section class="audience">
-        <div class="container">
-            <div class="audience-content">
-                <div class="audience-card">
-                    <h3><i class="fas fa-users"></i> Who We Serve</h3>
-                    <p>Our focus is on individuals in high-stress situations, with the 31-50 age group being the most affected demographic seeking support.</p>
-                    <ul class="audience-list">
-                        <li>
-                            <i class="fas fa-briefcase"></i>
-                            <span>Working Professionals in high-stress environments</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-graduation-cap"></i>
-                            <span>University and college Students</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-hands-helping"></i>
-                            <span>Caregivers and frontline workers</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-heartbeat"></i>
-                            <span>Patients with chronic health conditions</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-chart-line"></i>
-                            <span>Individuals experiencing life transitions</span>
-                        </li>
-                    </ul>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>Community Support</h3>
+                    <p>Connect with others on similar wellness journeys in supportive group discussions.</p>
                 </div>
-                <div class="audience-card">
-                    <h3><i class="fas fa-link"></i> Strategic Growth & Partnerships</h3>
-                    <p>We are actively seeking collaborations to integrate our AI-driven platform into the broader community.</p>
-                    <ul class="audience-list">
-                        <li>
-                            <i class="fas fa-building"></i>
-                            <span>Corporate and institutional partnerships</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-desktop"></i>
-                            <span>Premium subscription accounts</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-globe"></i>
-                            <span>Integration with existing platforms such as BruHealth</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-hand-holding-heart"></i>
-                            <span>Government health initiatives and international health organization affiliations</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section id="join" class="cta">
-        <div class="container">
-            <h2>Ready to Take Control of Your Mental Wellbeing?</h2>
-            <p>Join thousands of users who have transformed their relationship with stress through i.lec's innovative platform.</p>
-            <div class="cta-buttons">
-                <a href="https://forms.gle/SG6u5WKaQZvhB6ju9" target="_blank" class="cta-button">Share Your Thoughts</a>
-                <a href="#resources" class="secondary-button">Access Free Resources</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
+            <div class="footer-container">
+                <div class="footer-section">
                     <h3>i.lec</h3>
-                    <p>Intelligent Learning Empathetic Caregiver - Your pocket Zen master for stress management and mental wellness.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                    <p>Intelligent Learning Empathetic Caregiver - Providing 24/7 accessible mental wellness support to prevent burnout and empower individuals.</p>
                 </div>
-                <div class="footer-column">
+                
+                <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#problem">The Problem</a></li>
-                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#about">About</a></li>
                         <li><a href="#resources">Resources</a></li>
+                        <li><a href="#assessment">Assessment</a></li>
                         <li><a href="#join">Join Us</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                
+                <div class="footer-section">
                     <h3>Contact Us</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> talktoilec@gmail.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Based in Brunei Darussalam</li>
-                    </ul>
+                    <div class="contact-info">
+                        <p>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:talktoilec@gmail.com" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">talktoilec@gmail.com</a>
+                        </p>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Based in Brunei Darussalam
+                        </p>
+                    </div>
                 </div>
-                <div class="footer-column">
+                
+                <div class="footer-section">
                     <h3>Legal</h3>
-                    <ul class="footer-links">
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
+                    <ul class="legal-links">
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#cookies">Cookie Policy</a></li>
+                        <li><a href="#accessibility">Accessibility Statement</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="copyright">
-                <p>&copy; 2023 i.lec. All rights reserved.</p>
+                <p>&copy; 2025 i.lec - Intelligent Learning Empathetic Caregiver. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">"We've Got You. Here for your healing, not just your hustle."</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+        // Animate acronym letters
+        document.addEventListener('DOMContentLoaded', function() {
+            const letters = document.querySelectorAll('.acronym-letter');
+            letters.forEach((letter, index) => {
+                letter.style.animationDelay = `${index * 0.2}s`;
+            });
+
+            // Add smooth scrolling and active nav highlighting - Only Home stays active
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    // Only highlight Home button
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        if (link.getAttribute('href') !== '#home') {
+                            link.classList.remove('active');
+                        }
                     });
-                }
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Highlight Home by default
+            document.querySelector('a[href="#home"]').classList.add('active');
+
+            // Add hover effects to infographic items
+            const infographicItems = document.querySelectorAll('.infographic-item');
+            infographicItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.infographic-icon');
+                    icon.style.transform = 'scale(1.1) rotate(5deg)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.infographic-icon');
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                });
             });
         });
 
-        // Animation for feature cards
-        document.addEventListener('DOMContentLoaded', function() {
-            const featureCards = document.querySelectorAll('.feature-card');
+        // Keep Home highlighted on scroll
+        window.addEventListener('scroll', function() {
+            const homeLink = document.querySelector('a[href="#home"]');
+            const sections = document.querySelectorAll('section');
+            let current = '';
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            featureCards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(card);
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
             });
+
+            // Only highlight Home, remove from others
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                if (link.getAttribute('href') !== '#home') {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Only add active class to Home if we're near top
+            if (scrollY < 100) {
+                homeLink.classList.add('active');
+            }
         });
     </script>
 </body>
