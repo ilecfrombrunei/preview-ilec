@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Assessment - i.lec</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles - Match index.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E7875;
+            --primary-light: #2A9D8F;
+            --secondary: #F5E4C3;
+            --accent: #FF9E6D;
+            --accent-light: #FFB996;
+            --dark: #2D3748;
+            --light: #F7FAFC;
+            --gray-900: #111827;
+            --gray-800: #1F2937;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* Navigation - Match index.html */
+        nav {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-top: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            background: rgba(30, 120, 117, 0.1);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover:not(.active) {
+            color: var(--primary);
+            background: rgba(30, 120, 117, 0.08);
+        }
+
+        .nav-links .join-button {
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        .nav-links .join-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 158, 109, 0.6);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(255, 158, 109, 0.7);
+            }
+            100% {
+                box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            }
+        }
+
+        /* Hero Section - Assessment Version */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a5f5c 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #F5E4C3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .sdg-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Assessment Intro - Enhanced */
+        .assessment-intro {
+            background: linear-gradient(135deg, #F0F7F7 0%, #E8F4F4 100%);
+            position: relative;
+            padding: 6rem 0;
+        }
+
+        .intro-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-features {
+            margin-top: 2rem;
+        }
+
+        .intro-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .intro-feature:hover {
+            transform: translateX(10px);
+        }
+
+        .intro-feature i {
+            color: var(--primary);
+            margin-right: 1.5rem;
+            margin-top: 0.25rem;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #E8F4F4 0%, #F0F9F9 100%);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .intro-feature h4 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .intro-visual {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid var(--primary-light);
+        }
+
+        .intro-visual i {
+            font-size: 5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #E8F4F4 0%, #F0F9F9 100%);
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            margin: 0 auto 2rem;
+            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.1);
+        }
+
+        .intro-visual h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .start-assessment-btn {
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            margin-top: 1.5rem;
+        }
+
+        .start-assessment-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 158, 109, 0.6);
+        }
+
+        /* Assessment Container - Enhanced */
+        .assessment-container {
+            padding: 6rem 0;
+            background: white;
+            display: none;
+        }
+
+        .assessment-card {
+            background: white;
+            border-radius: 25px;
+            padding: 4rem;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            border: 2px solid var(--primary-light);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .assessment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .assessment-progress {
+            margin-bottom: 3rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: #E8F4F4;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 5px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .question-container {
+            margin-bottom: 3rem;
+        }
+
+        .question-number {
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .question-number::before {
+            content: 'Q';
+            background: var(--primary);
+            color: white;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.9rem;
+        }
+
+        .question-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            background-color: #F8FDFD;
+            border: 2px solid #E2E8F0;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .option:hover {
+            border-color: var(--primary);
+            background-color: rgba(30, 120, 117, 0.05);
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background-color: rgba(30, 120, 117, 0.1);
+            box-shadow: 0 5px 15px rgba(30, 120, 117, 0.1);
+        }
+
+        .option.selected::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 80%;
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        .option input {
+            margin-right: 1.5rem;
+            width: 20px;
+            height: 20px;
+        }
+
+        .option-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            flex: 1;
+        }
+
+        .assessment-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #E8F4F4;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.2);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(30, 120, 117, 0.3);
+        }
+
+        .nav-button:disabled {
+            background: #CBD5E0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Results Section - Enhanced */
+        .results {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #F0F7F7 0%, #E8F4F4 100%);
+            display: none;
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        .results-card {
+            background: white;
+            border-radius: 25px;
+            padding: 4rem;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            border: 2px solid var(--primary-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .results-icon {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            background: linear-gradient(135deg, #E8F4F4 0%, #F0F9F9 100%);
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            margin: 0 auto 2rem;
+            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.1);
+        }
+
+        .results-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .results-score {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .stress-level {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .stress-level.low {
+            background: linear-gradient(135deg, #C6F6D5 0%, #9AE6B4 100%);
+            color: #22543D;
+            box-shadow: 0 4px 15px rgba(154, 230, 180, 0.3);
+        }
+
+        .stress-level.moderate {
+            background: linear-gradient(135deg, #FEFCBF 0%, #FAF089 100%);
+            color: #744210;
+            box-shadow: 0 4px 15px rgba(250, 240, 137, 0.3);
+        }
+
+        .stress-level.high {
+            background: linear-gradient(135deg, #FEB2B2 0%, #FC8181 100%);
+            color: #742A2A;
+            box-shadow: 0 4px 15px rgba(252, 129, 129, 0.3);
+        }
+
+        .stress-level.severe {
+            background: linear-gradient(135deg, #FC8181 0%, #F56565 100%);
+            color: #742A2A;
+            box-shadow: 0 4px 15px rgba(245, 101, 101, 0.4);
+        }
+
+        .results-description {
+            margin-bottom: 3rem;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .recommendations {
+            text-align: left;
+            margin-bottom: 3rem;
+            background: #F8FDFD;
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid var(--primary-light);
+        }
+
+        .recommendations h3 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .recommendation {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .recommendation:last-child {
+            margin-bottom: 0;
+        }
+
+        .recommendation i {
+            color: var(--primary);
+            margin-right: 1.5rem;
+            margin-top: 0.25rem;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #E8F4F4 0%, #F0F9F9 100%);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .recommendation p {
+            margin-bottom: 0;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .results-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.2);
+        }
+
+        .results-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(30, 120, 117, 0.3);
+            color: white;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .secondary-button:hover {
+            background: rgba(30, 120, 117, 0.1);
+            transform: translateY(-3px);
+            color: var(--primary);
+        }
+
+        /* Stress Indicators - Enhanced & Fixed to 2x2 Grid */
+        .stress-indicators {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .indicators-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 2.5rem;
+        }
+
+        .indicator-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .indicator-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary);
+        }
+
+        .indicator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .indicator-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .indicator-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #E8F4F4 0%, #F0F9F9 100%);
+            border-radius: 20px;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .indicator-card:hover .indicator-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        .indicator-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer - Match index.html */
+        footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-info i {
+            margin-right: 1rem;
+            color: var(--secondary);
+            width: 20px;
+            flex-shrink: 0;
+        }
+
+        .legal-links {
+            list-style: none;
+        }
+
+        .legal-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .legal-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .legal-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .intro-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .intro-feature {
+                text-align: left;
+            }
+            
+            /* Make indicators 2x2 on tablet */
+            .indicators-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, auto);
+            }
+        }
+
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .assessment-card,
+            .results-card {
+                padding: 3rem;
+            }
+            
+            .question-text {
+                font-size: 1.5rem;
+            }
+            
+            /* Make indicators 2x1 on smaller tablets */
+            .indicators-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, auto);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .intro-visual i {
+                width: 80px;
+                height: 80px;
+                font-size: 3rem;
+            }
+            
+            .results-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .results-button,
+            .secondary-button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .assessment-card,
+            .results-card {
+                padding: 2rem;
+            }
+            
+            /* Make indicators 2x1 on mobile */
+            .indicators-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, auto);
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .contact-info p {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 0.8rem;
+            }
+            
+            .intro-feature {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+            
+            .intro-feature i {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .question-text {
+                font-size: 1.3rem;
+            }
+            
+            .option {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                i<div class="logo-dot"></div>lec
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="assessment.html" class="active">Assessment</a></li>
+                <li><a href="join.html" class="join-button">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Understand Your Stress Levels</h1>
+            <p>Take our comprehensive assessment to gain insights into your stress patterns and receive personalized recommendations.</p>
+            <div class="sdg-badge">
+                <i class="fas fa-bullseye"></i>
+                Evidence-Based Assessment Aligned with Clinical Standards
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Intro -->
+    <section class="assessment-intro">
+        <div class="container">
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h2>Why Assess Your Stress?</h2>
+                    <p>Understanding your stress levels is the first step toward effective management. Our clinically-informed assessment helps identify patterns, triggers, and the impact of stress on your daily life with precision and empathy.</p>
+                    
+                    <div class="intro-features">
+                        <div class="intro-feature">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <h4>AI-Powered Progress Tracking</h4>
+                                <p>Monitor changes in your stress levels over time with intelligent analytics that adapt to your unique patterns.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="intro-feature">
+                            <i class="fas fa-brain"></i>
+                            <div>
+                                <h4>Personalized Clinical Insights</h4>
+                                <p>Receive tailored, evidence-based recommendations aligned with established psychological frameworks.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="intro-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h4>Private & Secure</h4>
+                                <p>Your assessment results are encrypted and completely confidential, stored with enterprise-grade security.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="intro-visual">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h3>Quick & Comprehensive</h3>
+                    <p>Our scientifically-validated assessment takes just 5-7 minutes to complete but provides deep, actionable insights into your stress patterns and coping mechanisms.</p>
+                    <button class="start-assessment-btn" id="start-assessment">
+                        <i class="fas fa-play-circle"></i> Start Assessment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Container -->
+    <section class="assessment-container" id="assessment-container">
+        <div class="container">
+            <div class="assessment-card">
+                <div class="assessment-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>Question <span id="current-question">1</span> of <span id="total-questions">10</span></span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                </div>
+                
+                <div class="question-container">
+                    
+                    <div class="question-text" id="question-text">
+                        How often have you felt nervous or stressed in the past month?
+                    </div>
+                    
+                    <div class="options-container" id="options-container">
+                        <!-- Options will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <div class="assessment-navigation">
+                    <button class="nav-button" id="prev-button" disabled>
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-button" id="next-button">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results" id="results-section">
+        <div class="container">
+            <div class="results-card">
+                <div class="results-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h2 class="results-title">Your Stress Assessment Results</h2>
+                <div class="results-score" id="results-score">0</div>
+                <div class="stress-level" id="stress-level">Low Stress</div>
+                
+                <div class="results-description" id="results-description">
+                    <!-- Results description will be dynamically added here -->
+                </div>
+                
+                <div class="recommendations">
+                    <h3>Personalized AI-Generated Recommendations</h3>
+                    <div class="recommendation" id="recommendation-1">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Practice deep breathing exercises for 5 minutes daily</p>
+                    </div>
+                    <div class="recommendation" id="recommendation-2">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Establish a consistent sleep schedule</p>
+                    </div>
+                    <div class="recommendation" id="recommendation-3">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Take regular breaks during work hours</p>
+                    </div>
+                </div>
+                
+                <div class="results-actions">
+                    <a href="resources.html" class="results-button">
+                        <i class="fas fa-book-open"></i> Explore Resources
+                    </a>
+                    <a href="join.html" class="secondary-button">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </a>
+                    <button class="secondary-button" id="retake-assessment">
+                        <i class="fas fa-redo"></i> Retake Assessment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stress Indicators -->
+    <section class="stress-indicators">
+        <div class="container">
+            <h2 class="section-title">Common Stress Indicators</h2>
+            <div class="indicators-grid">
+                <div class="indicator-card">
+                    <div class="indicator-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h3 class="indicator-title">Sleep Patterns</h3>
+                    <p>Difficulty falling asleep, waking up frequently, or sleeping too much can indicate elevated stress levels and disrupted circadian rhythms.</p>
+                </div>
+                
+                <div class="indicator-card">
+                    <div class="indicator-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="indicator-title">Physical Symptoms</h3>
+                    <p>Headaches, muscle tension, fatigue, or stomach issues may be physical manifestations of chronic stress affecting your body.</p>
+                </div>
+                
+                <div class="indicator-card">
+                    <div class="indicator-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="indicator-title">Cognitive Changes</h3>
+                    <p>Racing thoughts, memory problems, brain fog, or difficulty concentrating can be stress-related cognitive impacts.</p>
+                </div>
+                
+                <div class="indicator-card">
+                    <div class="indicator-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="indicator-title">Social Withdrawal</h3>
+                    <p>Isolating yourself from friends and family or avoiding social situations may signal stress overload and emotional exhaustion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>i.lec</h3>
+                    <p>Intelligent Learning Empathetic Caregiver - Providing 24/7 accessible mental wellness support to prevent burnout and empower individuals.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="assessment.html">Assessment</a></li>
+                        <li><a href="join.html">Join Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email:</span>
+                            <a href="mailto:talktoilec@gmail.com" style="color: var(--accent-light); text-decoration: none; margin-left: 0.5rem;">
+                                talktoilec@gmail.com
+                            </a>
+                        </p>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Based in Brunei Darussalam
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="legal-links">
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#cookies">Cookie Policy</a></li>
+                        <li><a href="#accessibility">Accessibility Statement</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 i.lec - Intelligent Learning Empathetic Caregiver. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">"We've Got You. Here for your healing, not just your hustle."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Assessment questions and scoring
+        const assessmentQuestions = [
+            {
+                question: "How often have you felt nervous or stressed in the past month?",
+                options: [
+                    { text: "Never", value: 0 },
+                    { text: "Rarely", value: 1 },
+                    { text: "Sometimes", value: 2 },
+                    { text: "Often", value: 3 },
+                    { text: "Very Often", value: 4 }
+                ]
+            },
+            {
+                question: "How often have you found that you could not cope with all the things that you had to do?",
+                options: [
+                    { text: "Never", value: 0 },
+                    { text: "Rarely", value: 1 },
+                    { text: "Sometimes", value: 2 },
+                    { text: "Often", value: 3 },
+                    { text: "Very Often", value: 4 }
+                ]
+            },
+            {
+                question: "How often have you felt confident about your ability to handle your personal problems?",
+                options: [
+                    { text: "Very Often", value: 0 },
+                    { text: "Often", value: 1 },
+                    { text: "Sometimes", value: 2 },
+                    { text: "Rarely", value: 3 },
+                    { text: "Never", value: 4 }
+                ]
+            },
+            {
+                question: "How often have you felt that things were going your way?",
+                options: [
+                    { text: "Very Often", value: 0 },
+                    { text: "Often", value: 1 },
+                    { text: "Sometimes", value: 2 },
+                    { text: "Rarely", value: 3 },
+                    { text: "Never", value: 4 }
+                ]
+            },
+            {
+                question: "How often have you felt difficulties were piling up so high that you could not overcome them?",
+                options: [
+                    { text: "Never", value: 0 },
+                    { text: "Rarely", value: 1 },
+                    { text: "Sometimes", value: 2 },
+                    { text: "Often", value: 3 },
+                    { text: "Very Often", value: 4 }
+                ]
+            },
+            {
+                question: "How would you rate your sleep quality over the past month?",
+                options: [
+                    { text: "Excellent", value: 0 },
+                    { text: "Good", value: 1 },
+                    { text: "Fair", value: 2 },
+                    { text: "Poor", value: 3 },
+                    { text: "Very Poor", value: 4 }
+                ]
+            },
+            {
+                question: "How often have you felt irritable or angry?",
+                options: [
+                    { text: "Never", value: 0 },
+                    { text: "Rarely", value: 1 },
+                    { text: "Sometimes", value: 2 },
+                    { text: "Often", value: 3 },
+                    { text: "Very Often", value: 4 }
+                ]
+            },
+            {
+                question: "How often have you felt overwhelmed by your responsibilities?",
+                options: [
+                    { text: "Never", value: 0 },
+                    { text: "Rarely", value: 1 },
+                    { text: "Sometimes", value: 2 },
+                    { text: "Often", value: 3 },
+                    { text: "Very Often", value: 4 }
+                ]
+            },
+            {
+                question: "How often have you experienced physical symptoms of stress (headaches, stomach issues, muscle tension)?",
+                options: [
+                    { text: "Never", value: 0 },
+                    { text: "Rarely", value: 1 },
+                    { text: "Sometimes", value: 2 },
+                    { text: "Often", value: 3 },
+                    { text: "Very Often", value: 4 }
+                ]
+            },
+            {
+                question: "How often have you felt unable to control the important things in your life?",
+                options: [
+                    { text: "Never", value: 0 },
+                    { text: "Rarely", value: 1 },
+                    { text: "Sometimes", value: 2 },
+                    { text: "Often", value: 3 },
+                    { text: "Very Often", value: 4 }
+                ]
+            }
+        ];
+
+        // Assessment state
+        let currentQuestion = 0;
+        let answers = [];
+        let totalScore = 0;
+
+        // DOM elements
+        const assessmentContainer = document.getElementById('assessment-container');
+        const resultsSection = document.getElementById('results-section');
+        const startButton = document.getElementById('start-assessment');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const currentQuestionElement = document.getElementById('current-question');
+        const totalQuestionsElement = document.getElementById('total-questions');
+        const progressFill = document.getElementById('progress-fill');
+        const progressPercent = document.getElementById('progress-percent');
+        const resultsScore = document.getElementById('results-score');
+        const stressLevel = document.getElementById('stress-level');
+        const resultsDescription = document.getElementById('results-description');
+        const retakeButton = document.getElementById('retake-assessment');
+
+        // Initialize assessment
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide assessment container initially
+            assessmentContainer.style.display = 'none';
+            resultsSection.style.display = 'none';
+            
+            // Set total questions
+            totalQuestionsElement.textContent = assessmentQuestions.length;
+            
+            // Start assessment button
+            startButton.addEventListener('click', startAssessment);
+            
+            // Navigation buttons
+            prevButton.addEventListener('click', goToPreviousQuestion);
+            nextButton.addEventListener('click', goToNextQuestion);
+            
+            // Retake assessment
+            retakeButton.addEventListener('click', retakeAssessment);
+        });
+
+        // Start the assessment
+        function startAssessment() {
+            assessmentContainer.style.display = 'block';
+            document.querySelector('.assessment-intro').style.display = 'none';
+            loadQuestion(0);
+            
+            // Scroll to assessment
+            assessmentContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Load a question
+        function loadQuestion(index) {
+            currentQuestion = index;
+            const question = assessmentQuestions[index];
+            
+            // Update question number and text
+            currentQuestionElement.textContent = index + 1;
+            questionText.textContent = question.question; // Just the question text, no numbering
+            
+            // Clear options
+            optionsContainer.innerHTML = '';
+            
+            // Add options
+            question.options.forEach((option, i) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                if (answers[index] === i) {
+                    optionElement.classList.add('selected');
+                }
+                
+                optionElement.innerHTML = `
+                    <input type="radio" name="option" id="option-${i}" ${answers[index] === i ? 'checked' : ''}>
+                    <label for="option-${i}" class="option-label">${option.text}</label>
+                `;
+                
+                optionElement.addEventListener('click', () => selectOption(i));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Update progress
+            updateProgress();
+            
+            // Update navigation buttons
+            prevButton.disabled = index === 0;
+            nextButton.textContent = index === assessmentQuestions.length - 1 ? 'See Results' : 'Next';
+            nextButton.disabled = answers[index] === undefined;
+        }
+
+        // Select an option
+        function selectOption(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            
+            // Update UI
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, i) => {
+                if (i === optionIndex) {
+                    option.classList.add('selected');
+                    option.querySelector('input').checked = true;
+                } else {
+                    option.classList.remove('selected');
+                    option.querySelector('input').checked = false;
+                }
+            });
+            
+            // Enable next button
+            nextButton.disabled = false;
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / assessmentQuestions.length) * 100;
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // Go to previous question
+        function goToPreviousQuestion() {
+            if (currentQuestion > 0) {
+                loadQuestion(currentQuestion - 1);
+            }
+        }
+
+        // Go to next question or show results
+        function goToNextQuestion() {
+            if (answers[currentQuestion] === undefined) {
+                alert('Please select an answer before continuing.');
+                return;
+            }
+            
+            if (currentQuestion < assessmentQuestions.length - 1) {
+                loadQuestion(currentQuestion + 1);
+            } else {
+                calculateResults();
+            }
+        }
+
+        // Calculate assessment results
+        function calculateResults() {
+            // Calculate total score
+            totalScore = 0;
+            answers.forEach((answerIndex, questionIndex) => {
+                if (answerIndex !== undefined) {
+                    totalScore += assessmentQuestions[questionIndex].options[answerIndex].value;
+                }
+            });
+            
+            // Determine stress level
+            let level, description, levelClass;
+            
+            if (totalScore <= 10) {
+                level = "Low Stress";
+                description = "You're managing stress well. Your current coping strategies appear effective. Continue practicing healthy habits to maintain your wellbeing and build resilience for future challenges.";
+                levelClass = "low";
+            } else if (totalScore <= 20) {
+                level = "Moderate Stress";
+                description = "You're experiencing moderate stress levels. This is common and manageable with some adjustments to your routine and stress management techniques. Consider incorporating mindfulness practices and regular physical activity.";
+                levelClass = "moderate";
+            } else if (totalScore <= 30) {
+                level = "High Stress";
+                description = "You're experiencing high stress levels that may be impacting your daily life. Consider implementing more structured stress management strategies and seeking support. Our AI companion can provide immediate relief and guidance.";
+                levelClass = "high";
+            } else {
+                level = "Elevated Stress";
+                description = "You're experiencing elevated stress that significantly impacts your wellbeing. It's important to seek professional support and implement comprehensive stress management strategies. Our platform can connect you with appropriate resources and support.";
+                levelClass = "severe";
+            }
+            
+            // Update results UI
+            resultsScore.textContent = totalScore;
+            stressLevel.textContent = level;
+            stressLevel.className = `stress-level ${levelClass}`;
+            resultsDescription.textContent = description;
+            
+            // Update recommendations based on score
+            updateRecommendations(totalScore);
+            
+            // Show results
+            assessmentContainer.style.display = 'none';
+            resultsSection.style.display = 'block';
+            resultsSection.classList.add('active');
+            
+            // Scroll to results
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Update recommendations based on score
+        function updateRecommendations(score) {
+            const rec1 = document.getElementById('recommendation-1');
+            const rec2 = document.getElementById('recommendation-2');
+            const rec3 = document.getElementById('recommendation-3');
+            
+            if (score <= 10) {
+                rec1.querySelector('p').textContent = "Continue your current stress management practices and track progress with our AI analytics";
+                rec2.querySelector('p').textContent = "Explore mindfulness meditation through our app to enhance resilience and emotional intelligence";
+                rec3.querySelector('p').textContent = "Maintain regular physical activity and social connections using our community features";
+            } else if (score <= 20) {
+                rec1.querySelector('p').textContent = "Practice deep breathing exercises for 5 minutes daily using our guided audio sessions";
+                rec2.querySelector('p').textContent = "Establish a consistent sleep schedule with our sleep tracking and optimization tools";
+                rec3.querySelector('p').textContent = "Take regular breaks during work hours using our smart notification system";
+            } else if (score <= 30) {
+                rec1.querySelector('p').textContent = "Schedule daily relaxation time (20-30 minutes) with our personalized wellness calendar";
+                rec2.querySelector('p').textContent = "Use our AI companion for immediate stress relief and coping strategy suggestions";
+                rec3.querySelector('p').textContent = "Consider connecting with our mental health resources and professional support network";
+            } else {
+                rec1.querySelector('p').textContent = "Access our premium AI-guided stress management program with 24/7 support";
+                rec2.querySelector('p').textContent = "Implement a structured daily routine with personalized self-care activities";
+                rec3.querySelector('p').textContent = "Connect with mental health professionals through our secure referral system";
+            }
+        }
+
+        // Retake assessment
+        function retakeAssessment() {
+            // Reset state
+            currentQuestion = 0;
+            answers = [];
+            totalScore = 0;
+            
+            // Show assessment container
+            assessmentContainer.style.display = 'block';
+            resultsSection.style.display = 'none';
+            
+            // Show intro section again
+            document.querySelector('.assessment-intro').style.display = 'block';
+            
+            // Reload first question
+            loadQuestion(0);
+            
+            // Scroll to assessment
+            assessmentContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

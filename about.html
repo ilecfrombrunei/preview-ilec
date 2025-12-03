@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - i.lec</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E7875;
+            --primary-light: #2A9D8F;
+            --secondary: #F5E4C3;
+            --accent: #FF9E6D;
+            --accent-light: #FFB996;
+            --dark: #2D3748;
+            --light: #F7FAFC;
+            --gray-900: #111827;
+            --gray-800: #1F2937;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.2);
+        }
+
+        .sdg-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-top: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            background: rgba(30, 120, 117, 0.1);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover:not(.active) {
+            color: var(--primary);
+            background: rgba(30, 120, 117, 0.08);
+        }
+
+        .nav-links .join-button {
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        .nav-links .join-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 158, 109, 0.6);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(255, 158, 109, 0.7);
+            }
+            100% {
+                box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a5f5c 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .acronym-animation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            min-height: 120px;
+        }
+
+        .acronym-letter {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #F5E4C3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+            animation: float 6s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.2s);
+        }
+
+        .acronym-meaning {
+            font-size: 1.8rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        /* About Content Sections */
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 4rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--primary);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+
+        .content-text h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .content-visual {
+            background: linear-gradient(135deg, #f8fdfd 0%, #f0f9f9 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(30, 120, 117, 0.1);
+        }
+
+        .content-visual i {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* AI Partners Section - 2x2 Grid */
+        .ai-partners {
+            background: linear-gradient(135deg, var(--secondary) 0%, #f8f3e3 100%);
+        }
+
+        .ai-partners-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .ai-partner-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid var(--accent);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-partner-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .ai-partner-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-partner-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .ai-partner-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .ai-partner-benefit {
+            background: rgba(30, 120, 117, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: linear-gradient(135deg, #F0F7F7 0%, #E8F4F4 100%);
+        }
+
+        .problem-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Values Section */
+        .values {
+            background: linear-gradient(135deg, var(--secondary) 0%, #F8F0E3 100%);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2.5rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .value-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .value-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a5f5c 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .cta h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 158, 109, 0.6);
+        }
+
+        /* Footer - Updated to bg-gray-900 */
+        footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-info i {
+            margin-right: 1rem;
+            color: var(--secondary);
+            width: 20px;
+            flex-shrink: 0;
+        }
+
+        .legal-links {
+            list-style: none;
+        }
+
+        .legal-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .legal-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .legal-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ai-partners-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .problem-stats,
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-section {
+                padding: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .acronym-letter {
+                font-size: 3.5rem;
+            }
+            
+            .acronym-meaning {
+                font-size: 1.4rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .contact-info p {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .acronym-letter {
+                font-size: 2.8rem;
+            }
+            
+            .acronym-meaning {
+                font-size: 1.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 0.8rem;
+            }
+            
+            .content-section {
+                padding: 2rem;
+            }
+            
+            .value-icon,
+            .ai-partner-icon {
+                font-size: 2.5rem;
+            }
+            
+            .ai-partner-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                i<div class="logo-dot"></div>lec
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="assessment.html">Assessment</a></li>
+                <li><a href="join.html" class="join-button">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="acronym-animation">
+                <div class="acronym-letter" style="--i:0">I</div>
+                <div class="acronym-letter" style="--i:1">.</div>
+                <div class="acronym-letter" style="--i:2">L</div>
+                <div class="acronym-letter" style="--i:3">E</div>
+                <div class="acronym-letter" style="--i:4">C</div>
+            </div>
+            
+            <div class="acronym-meaning">
+                Intelligent Learning Empathetic Caregiver
+            </div>
+            
+            <p>"We've Got You. Here for your healing, not just your hustle."</p>
+            
+            <div class="sdg-badge">
+                <i class="fas fa-bullseye"></i>
+                Aligned with UN SDG 3 & Wawasan 2035
+            </div>
+        </div>
+    </section>
+
+    <!-- What is i.lec Section -->
+    <section class="about-what">
+        <div class="container">
+            <div class="content-section">
+                <h2 class="section-title">What is i.lec?</h2>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h3>Your Intelligent Learning Empathetic Caregiver</h3>
+                        <p>i.lec is an AI-driven digital wellness platform designed to provide accessible, 24/7 mental health support. We combine cutting-edge technology with human-centered design to create a compassionate companion that grows with you.</p>
+                        <p>Born from the need to address the silent mental health crisis in Brunei and beyond, i.lec represents a new era of preventive mental healthcare. We're not just another app—we're your pocket Zen master for stress management and emotional well-being.</p>
+                        <p>Our platform learns from your interactions, adapts to your unique needs, and provides evidence-based support exactly when you need it most—especially during those challenging evening hours when traditional support is unavailable.</p>
+                    </div>
+                    <div class="content-visual">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI-Powered Care</h3>
+                        <p>Intelligent algorithms that understand and respond to your emotional needs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Story Behind i.lec Section -->
+    <section class="about-story">
+        <div class="container">
+            <div class="content-section">
+                <h2 class="section-title">The Story Behind i.lec</h2>
+                <div class="content-grid">
+                    <div class="content-visual">
+                        <i class="fas fa-heart"></i>
+                        <h3>Born from Compassion</h3>
+                        <p>Created by people who care about community well-being</p>
+                    </div>
+                    <div class="content-text">
+                        <h3>A Vision Born from Community Need</h3>
+                        <p>The idea for i.lec emerged in 2024 as we witnessed our community in Brunei grappling with growing mental health challenges. We saw friends, family members, and colleagues struggling silently with stress, anxiety, and emotional fatigue—especially during evenings and weekends when professional help was hardest to find.</p>
+                        <p>The COVID-19 pandemic amplified what was already a silent crisis, with anxiety levels rising by 28.4% and people of all ages facing unprecedented challenges. We knew we couldn't stand by and watch—we had to create something that would be there for people when they needed it most.</p>
+                        <p>What started as a conversation among concerned friends evolved into a mission: to make mental wellness support accessible, affordable, and available 24/7 for everyone who needs it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">Why i.lec Exists</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">We're addressing critical gaps in mental health support that affect millions:</p>
+            
+            <div class="problem-stats">
+                <div class="stat-card">
+                    <div class="stat-number">7,000+</div>
+                    <div class="stat-label">Individuals seeking mental health assistance in Brunei</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label">Professionals experiencing regular workplace stress</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">31-50</div>
+                    <div class="stat-label">Age group most affected seeking support</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">65%</div>
+                    <div class="stat-label">Issues preventable with early intervention</div>
+                </div>
+            </div>
+            
+            <div class="content-section" style="margin-top: 4rem;">
+                <div class="content-text">
+                    <h3>The Accessibility Gap</h3>
+                    <p>Traditional mental health support systems face significant challenges:</p>
+                    <ul style="list-style-type: none; margin: 1.5rem 0;">
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-clock" style="position: absolute; left: 0; color: var(--primary);"></i>
+                            <strong>Limited Hours:</strong> Most support is only available during business hours
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-dollar-sign" style="position: absolute; left: 0; color: var(--primary);"></i>
+                            <strong>High Costs:</strong> Professional therapy can be prohibitively expensive
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-map-marker-alt" style="position: absolute; left: 0; color: var(--primary);"></i>
+                            <strong>Geographic Barriers:</strong> Limited availability in rural areas
+                        </li>
+                        <li style="padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-hourglass-half" style="position: absolute; left: 0; color: var(--primary);"></i>
+                            <strong>Long Wait Times:</strong> Weeks or months for appointments
+                        </li>
+                    </ul>
+                    <p>i.lec exists to bridge these gaps, providing immediate, affordable, and accessible support to anyone with an internet connection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How i.lec Helps Section -->
+    <section class="about-help">
+        <div class="container">
+            <div class="content-section">
+                <h2 class="section-title">How i.lec Can Help</h2>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h3>Transformative Support for Modern Challenges</h3>
+                        <p>i.lec provides comprehensive support through innovative technology:</p>
+                        <ul style="list-style-type: none; margin: 1.5rem 0;">
+                            <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                                <i class="fas fa-microphone" style="position: absolute; left: 0; color: var(--primary);"></i>
+                                <strong>24/7 AI Vocal Assistant:</strong> Empathetic voice support when you need it most
+                            </li>
+                            <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                                <i class="fas fa-chart-line" style="position: absolute; left: 0; color: var(--primary);"></i>
+                                <strong>Personalized Growth Plans:</strong> Tailored strategies that adapt to your progress
+                            </li>
+                            <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                                <i class="fas fa-comments" style="position: absolute; left: 0; color: var(--primary);"></i>
+                                <strong>Instant Chat Support:</strong> Non-judgmental conversation anytime, anywhere
+                            </li>
+                            <li style="padding-left: 1.5rem; position: relative;">
+                                <i class="fas fa-shield-alt" style="position: absolute; left: 0; color: var(--primary);"></i>
+                                <strong>Preventive Care:</strong> Early intervention to prevent escalation
+                            </li>
+                        </ul>
+                        <p>By combining AI intelligence with empathetic design, we create a support system that's always learning, always adapting, and always there for you.</p>
+                    </div>
+                    <div class="content-visual">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>Always Available</h3>
+                        <p>Support when traditional systems are closed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Thanks to AI Partners Section - 2x2 Grid -->
+    <section class="ai-partners">
+        <div class="container">
+            <h2 class="section-title">Special Thanks to Our AI Development Partners</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+                This website and platform were developed with significant assistance from cutting-edge generative AI technologies, accelerating our mission to provide timely mental health support.
+            </p>
+            
+            <div class="ai-partners-grid">
+                <!-- Row 1, Column 1 -->
+                <div class="ai-partner-card">
+                    <div class="ai-partner-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="ai-partner-name">ChatGPT</div>
+                    <div class="ai-partner-description">
+                        For accelerating our research, content creation, and development process with human-like understanding.
+                    </div>
+                    <div class="ai-partner-benefit">
+                        <strong>Impact:</strong> 85% faster research and content development
+                    </div>
+                </div>
+                
+                <!-- Row 1, Column 2 -->
+                <div class="ai-partner-card">
+                    <div class="ai-partner-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="ai-partner-name">DeepSeek</div>
+                    <div class="ai-partner-description">
+                        For sophisticated AI models that understand and respond to human emotion with unprecedented sensitivity.
+                    </div>
+                    <div class="ai-partner-benefit">
+                        <strong>Impact:</strong> Enhanced empathetic response systems
+                    </div>
+                </div>
+                
+                <!-- Row 2, Column 1 -->
+                <div class="ai-partner-card">
+                    <div class="ai-partner-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="ai-partner-name">Claude</div>
+                    <div class="ai-partner-description">
+                        For assisting in our research and data collection processes, helping us gather valuable insights efficiently.
+                    </div>
+                    <div class="ai-partner-benefit">
+                        <strong>Impact:</strong> Comprehensive data analysis and insights
+                    </div>
+                </div>
+                
+                <!-- Row 2, Column 2 -->
+                <div class="ai-partner-card">
+                    <div class="ai-partner-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="ai-partner-name">Gemini</div>
+                    <div class="ai-partner-description">
+                        For enhancing our strategic planning and helping us create more effective mental health solutions.
+                    </div>
+                    <div class="ai-partner-benefit">
+                        <strong>Impact:</strong> Improved strategic decision-making
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section" style="margin-top: 4rem;">
+                <div class="content-text">
+                    <h3>How AI Transformed Our Development</h3>
+                    <p>Generative AI has been instrumental in accelerating our mission:</p>
+                    <ul style="list-style-type: none; margin: 1.5rem 0;">
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-rocket" style="position: absolute; left: 0; color: var(--primary);"></i>
+                            <strong>Accelerated Development:</strong> Months of work accomplished in weeks
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-lightbulb" style="position: absolute; left: 0; color: var(--primary);"></i>
+                            <strong>Creative Innovation:</strong> Brainstorming features that truly put users first
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-code" style="position: absolute; left: 0; color: var(--primary);"></i>
+                            <strong>Technical Excellence:</strong> Clean, efficient code for our platform
+                        </li>
+                        <li style="padding-left: 1.5rem; position: relative;">
+                            <i class="fas fa-users" style="position: absolute; left: 0; color: var(--primary);"></i>
+                            <strong>User-Centric Design:</strong> Features designed with genuine empathy
+                        </li>
+                    </ul>
+                    <p>This website itself is a testament to how AI can accelerate meaningful innovation in the mental health space.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">These principles guide every decision we make and every feature we build.</p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="value-name">Intelligent</div>
+                    <div class="value-description">Leveraging cutting-edge AI to provide personalized care that adapts to your unique needs and grows with you.</div>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="value-name">Learning</div>
+                    <div class="value-description">Continuously evolving based on user interactions, research, and the latest understanding of mental wellness.</div>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="value-name">Empathetic</div>
+                    <div class="value-description">Designed with genuine understanding and compassion, because we know that healing begins with being heard.</div>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="value-name">Caregiver</div>
+                    <div class="value-description">Committed to your well-being above all else, providing support that feels like it comes from someone who truly cares.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Join Us in Making Mental Wellness Accessible to All</h2>
+            <p>Together, we can create a world where no one has to face their struggles alone.</p>
+            <a href="join.html" class="cta-button">Become Part of Our Mission</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>i.lec</h3>
+                    <p>Intelligent Learning Empathetic Caregiver - Providing 24/7 accessible mental wellness support to prevent burnout and empower individuals.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="assessment.html">Assessment</a></li>
+                        <li><a href="join.html">Join Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email:</span>
+                            <a href="mailto:talktoilec@gmail.com" style="color: var(--accent-light); text-decoration: none; margin-left: 0.5rem;">
+                                talktoilec@gmail.com
+                            </a>
+                        </p>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Based in Brunei Darussalam
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="legal-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 i.lec - Intelligent Learning Empathetic Caregiver. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">"We've Got You. Here for your healing, not just your hustle."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animate acronym letters
+        document.addEventListener('DOMContentLoaded', function() {
+            const letters = document.querySelectorAll('.acronym-letter');
+            letters.forEach((letter, index) => {
+                letter.style.animationDelay = `${index * 0.2}s`;
+            });
+
+            // Add smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add hover effects to stat cards and AI partner cards
+            const interactiveCards = document.querySelectorAll('.stat-card, .ai-partner-card');
+            interactiveCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    if (this.querySelector('.stat-number')) {
+                        const number = this.querySelector('.stat-number');
+                        number.style.transform = 'scale(1.1)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    if (this.querySelector('.stat-number')) {
+                        const number = this.querySelector('.stat-number');
+                        number.style.transform = 'scale(1)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - i.lec</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles - Enhanced from index.txt */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E7875;
+            --primary-light: #2A9D8F;
+            --secondary: #F5E4C3;
+            --accent: #FF9E6D;
+            --accent-light: #FFB996;
+            --dark: #2D3748;
+            --light: #F7FAFC;
+            --gray-900: #111827;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Typography - Enhanced */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* Navigation - Matching index.txt */
+        nav {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-top: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            background: rgba(30, 120, 117, 0.1);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover:not(.active) {
+            color: var(--primary);
+            background: rgba(30, 120, 117, 0.08);
+        }
+
+        .nav-links .join-button {
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .nav-links .join-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 158, 109, 0.6);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4); }
+            50% { box-shadow: 0 4px 20px rgba(255, 158, 109, 0.7); }
+            100% { box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4); }
+        }
+
+        /* Hero Section - Enhanced */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a5f5c 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #F5E4C3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        /* Resource Categories - Enhanced */
+        .categories {
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #F0F7F7 0%, #E8F4F4 100%);
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-tab {
+            background: white;
+            border: 2px solid var(--primary-light);
+            color: var(--primary);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.1);
+        }
+
+        .category-tab.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 120, 117, 0.2);
+        }
+
+        .category-tab:hover:not(.active) {
+            background: rgba(30, 120, 117, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 120, 117, 0.15);
+        }
+
+        /* Saved Resources Section - Enhanced */
+        .saved-resources {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #FFF9F0 0%, #FFF5E6 100%);
+            border-radius: 25px;
+            margin: 2rem auto;
+            max-width: 1200px;
+            display: none;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .saved-resources.active {
+            display: block;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .saved-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding: 0 2rem;
+        }
+
+        .saved-header h2 {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .clear-saved {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .clear-saved:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 158, 109, 0.3);
+        }
+
+        /* Search and Filter - Enhanced */
+        .search-filter {
+            padding: 3rem 0;
+            background: white;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 1200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--primary-light);
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.1);
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 6px 20px rgba(30, 120, 117, 0.15);
+        }
+
+        .filter-select {
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--primary-light);
+            border-radius: 50px;
+            background: white;
+            font-size: 1rem;
+            min-width: 180px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.1);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 6px 20px rgba(30, 120, 117, 0.15);
+        }
+
+        /* Resource Grid - Enhanced */
+        .resources {
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #F7FAFC 0%, #F0F7F7 100%);
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(30, 120, 117, 0.15);
+            border-color: var(--primary-light);
+        }
+
+        .resource-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 100%);
+        }
+
+        .resource-image i {
+            font-size: 4rem;
+            z-index: 1;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        .resource-content {
+            padding: 2rem;
+        }
+
+        .resource-type {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .resource-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .resource-description {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .resource-duration {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .resource-topic {
+            background: rgba(30, 120, 117, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .resource-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .play-button, .download-button {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.2);
+        }
+
+        .play-button:hover, .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 120, 117, 0.3);
+        }
+
+        .save-button {
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary-light);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.1);
+        }
+
+        .save-button.saved {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .save-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(30, 120, 117, 0.15);
+        }
+
+        /* Saved Indicator */
+        .saved-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: none;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(255, 158, 109, 0.3);
+        }
+
+        .saved-indicator.active {
+            display: block;
+            animation: popIn 0.3s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* CTA Section - Enhanced */
+        .cta {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(255, 158, 109, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 158, 109, 0.6);
+            animation: none;
+        }
+
+        /* Toast Notification - Enhanced */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 1.2rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(30, 120, 117, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transform: translateX(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        /* Footer - Matching index.txt */
+        footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-info i {
+            margin-right: 1rem;
+            color: var(--secondary);
+            width: 20px;
+            flex-shrink: 0;
+        }
+
+        .legal-links {
+            list-style: none;
+        }
+
+        .legal-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .legal-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .legal-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Resource Category Colors */
+        .audio { background: linear-gradient(135deg, #4299E1 0%, #3182ce 100%); }
+        .video { background: linear-gradient(135deg, #ED8936 0%, #dd6b20 100%); }
+        .text { background: linear-gradient(135deg, #48BB78 0%, #38a169 100%); }
+        .interactive { background: linear-gradient(135deg, #9F7AEA 0%, #805ad5 100%); }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .resource-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .search-container {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .saved-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+                text-align: center;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .filter-select {
+                width: 100%;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .contact-info p {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 0.8rem;
+            }
+            
+            .category-tab {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .resource-grid {
+                gap: 1.5rem;
+            }
+            
+            .resource-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                i<div class="logo-dot"></div>lec
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="resources.html" class="active">Resources</a></li>
+                <li><a href="assessment.html">Assessment</a></li>
+                <li><a href="join.html" class="join-button">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Your Wellness Resource Library</h1>
+            <p>Access our curated collection of audio, video, and text resources designed to support your mental wellness journey.</p>
+            <div style="margin-top: 2rem;">
+                <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); display: inline-block; padding: 0.8rem 2rem; border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <i class="fas fa-bullseye" style="margin-right: 0.5rem;"></i>
+                    Aligned with UN SDG 3 & Wawasan 2035
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resource Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Explore Wellness Resources</h2>
+            <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">Filter through our comprehensive library to find the perfect resources for your wellness journey.</p>
+            
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="all">All Resources</div>
+                <div class="category-tab" data-category="audio">Audio</div>
+                <div class="category-tab" data-category="video">Video</div>
+                <div class="category-tab" data-category="text">Text/PDF</div>
+                <div class="category-tab" data-category="interactive">Interactive</div>
+                <div class="category-tab" data-category="saved">Saved Resources</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Saved Resources Section -->
+    <section class="saved-resources" id="saved-resources">
+        <div class="container">
+            <div class="saved-header">
+                <h2>Your Saved Resources</h2>
+                <button class="clear-saved" id="clear-saved">
+                    <i class="fas fa-trash-alt"></i> Clear All Saved
+                </button>
+            </div>
+            <div class="resource-grid" id="saved-resources-grid">
+                <!-- Saved resources will be dynamically added here -->
+                <div class="no-saved-message" style="text-align: center; grid-column: 1 / -1; padding: 3rem;">
+                    <i class="far fa-bookmark" style="font-size: 4rem; color: #CBD5E0; margin-bottom: 1.5rem;"></i>
+                    <h3 style="color: #718096; margin-bottom: 0.5rem;">No saved resources yet</h3>
+                    <p style="color: #A0AEC0; max-width: 500px; margin: 0 auto;">Save resources you find helpful to access them quickly later.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="search-filter">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Search resources...">
+                <select class="filter-select">
+                    <option value="all">All Topics</option>
+                    <option value="anxiety">Anxiety</option>
+                    <option value="depression">Depression</option>
+                    <option value="stress">Stress Management</option>
+                    <option value="mindfulness">Mindfulness</option>
+                    <option value="sleep">Sleep</option>
+                    <option value="relationships">Relationships</option>
+                </select>
+                <select class="filter-select">
+                    <option value="all">All Durations</option>
+                    <option value="short">Under 10 mins</option>
+                    <option value="medium">10-30 mins</option>
+                    <option value="long">Over 30 mins</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resource Grid -->
+    <section class="resources">
+        <div class="container">
+            <div class="resource-grid" id="resources-grid">
+                <!-- Audio Resources -->
+                <div class="resource-card" data-category="audio" data-topic="mindfulness" data-duration="short" data-id="audio-1">
+                    <div class="saved-indicator">Saved</div>
+                    <div class="resource-image audio">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type audio">Audio Meditation</span>
+                        <h3 class="resource-title">5-Minute Breathing Exercise</h3>
+                        <p class="resource-description">A guided breathing meditation to quickly center yourself during stressful moments and restore calm.</p>
+                        <div class="resource-meta">
+                            <div class="resource-duration">
+                                <i class="far fa-clock"></i> 5 mins
+                            </div>
+                            <div class="resource-topic">Mindfulness</div>
+                        </div>
+                        <div class="resource-action">
+                            <button class="play-button">
+                                <i class="fas fa-play"></i> Play Now
+                            </button>
+                            <button class="save-button">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-category="audio" data-topic="sleep" data-duration="medium" data-id="audio-2">
+                    <div class="saved-indicator">Saved</div>
+                    <div class="resource-image audio">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type audio">Sleep Guide</span>
+                        <h3 class="resource-title">Sleep Meditation for Restless Nights</h3>
+                        <p class="resource-description">Gentle guidance to calm your mind and prepare your body for deep, restful sleep.</p>
+                        <div class="resource-meta">
+                            <div class="resource-duration">
+                                <i class="far fa-clock"></i> 20 mins
+                            </div>
+                            <div class="resource-topic">Sleep</div>
+                        </div>
+                        <div class="resource-action">
+                            <button class="play-button">
+                                <i class="fas fa-play"></i> Play Now
+                            </button>
+                            <button class="save-button">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Resources -->
+                <div class="resource-card" data-category="video" data-topic="stress" data-duration="short" data-id="video-1">
+                    <div class="saved-indicator">Saved</div>
+                    <div class="resource-image video">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type video">Video Guide</span>
+                        <h3 class="resource-title">Progressive Muscle Relaxation</h3>
+                        <p class="resource-description">Step-by-step video guide to release physical tension and mental stress through systematic relaxation.</p>
+                        <div class="resource-meta">
+                            <div class="resource-duration">
+                                <i class="far fa-clock"></i> 12 mins
+                            </div>
+                            <div class="resource-topic">Stress Management</div>
+                        </div>
+                        <div class="resource-action">
+                            <button class="play-button">
+                                <i class="fas fa-play"></i> Watch Now
+                            </button>
+                            <button class="save-button">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-category="video" data-topic="mindfulness" data-duration="medium" data-id="video-2">
+                    <div class="saved-indicator">Saved</div>
+                    <div class="resource-image video">
+                        <i class="fas fa-yin-yang"></i>
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type video">Mindfulness Video</span>
+                        <h3 class="resource-title">Mindful Movement for Anxiety</h3>
+                        <p class="resource-description">Gentle movements combined with mindfulness techniques to ease anxiety and promote calm.</p>
+                        <div class="resource-meta">
+                            <div class="resource-duration">
+                                <i class="far fa-clock"></i> 25 mins
+                            </div>
+                            <div class="resource-topic">Anxiety</div>
+                        </div>
+                        <div class="resource-action">
+                            <button class="play-button">
+                                <i class="fas fa-play"></i> Watch Now
+                            </button>
+                            <button class="save-button">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text/PDF Resources -->
+                <div class="resource-card" data-category="text" data-topic="stress" data-duration="medium" data-id="text-1">
+                    <div class="saved-indicator">Saved</div>
+                    <div class="resource-image text">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type text">PDF Guide</span>
+                        <h3 class="resource-title">Workplace Stress Management</h3>
+                        <p class="resource-description">Practical strategies and techniques to effectively manage stress in professional environments.</p>
+                        <div class="resource-meta">
+                            <div class="resource-duration">
+                                <i class="far fa-clock"></i> 15 mins
+                            </div>
+                            <div class="resource-topic">Stress Management</div>
+                        </div>
+                        <div class="resource-action">
+                            <button class="download-button">
+                                <i class="fas fa-download"></i> Download PDF
+                            </button>
+                            <button class="save-button">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-category="text" data-topic="relationships" data-duration="long" data-id="text-2">
+                    <div class="saved-indicator">Saved</div>
+                    <div class="resource-image text">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type text">E-book</span>
+                        <h3 class="resource-title">Communication in Difficult Times</h3>
+                        <p class="resource-description">Learn to maintain healthy communication during stressful periods in relationships and build resilience.</p>
+                        <div class="resource-meta">
+                            <div class="resource-duration">
+                                <i class="far fa-clock"></i> 45 mins
+                            </div>
+                            <div class="resource-topic">Relationships</div>
+                        </div>
+                        <div class="resource-action">
+                            <button class="download-button">
+                                <i class="fas fa-download"></i> Download E-book
+                            </button>
+                            <button class="save-button">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Resources -->
+                <div class="resource-card" data-category="interactive" data-topic="anxiety" data-duration="short" data-id="interactive-1">
+                    <div class="saved-indicator">Saved</div>
+                    <div class="resource-image interactive">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type interactive">Interactive Tool</span>
+                        <h3 class="resource-title">Anxiety Tracking Tool</h3>
+                        <p class="resource-description">Track your anxiety patterns, identify triggers, and develop personalized coping strategies.</p>
+                        <div class="resource-meta">
+                            <div class="resource-duration">
+                                <i class="far fa-clock"></i> 5 mins
+                            </div>
+                            <div class="resource-topic">Anxiety</div>
+                        </div>
+                        <div class="resource-action">
+                            <button class="play-button">
+                                <i class="fas fa-external-link-alt"></i> Open Tool
+                            </button>
+                            <button class="save-button">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-category="interactive" data-topic="mindfulness" data-duration="medium" data-id="interactive-2">
+                    <div class="saved-indicator">Saved</div>
+                    <div class="resource-image interactive">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="resource-content">
+                        <span class="resource-type interactive">Interactive Challenge</span>
+                        <h3 class="resource-title">Mindfulness Challenge</h3>
+                        <p class="resource-description">7-day interactive mindfulness challenge with daily exercises, tracking, and progress insights.</p>
+                        <div class="resource-meta">
+                            <div class="resource-duration">
+                                <i class="far fa-clock"></i> 10 mins/day
+                            </div>
+                            <div class="resource-topic">Mindfulness</div>
+                        </div>
+                        <div class="resource-action">
+                            <button class="play-button">
+                                <i class="fas fa-external-link-alt"></i> Start Challenge
+                            </button>
+                            <button class="save-button">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Dive Deeper Into Your Wellness Journey?</h2>
+            <p>Join our community to access personalized recommendations, track your progress, and unlock premium resources.</p>
+            <a href="join.html" class="cta-button">Create Your Account</a>
+        </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Resource saved successfully!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>i.lec</h3>
+                    <p>Intelligent Learning Empathetic Caregiver - Providing 24/7 accessible mental wellness support to prevent burnout and empower individuals.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="assessment.html">Assessment</a></li>
+                        <li><a href="join.html">Join Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email:</span>
+                            <a href="mailto:talktoilec@gmail.com" style="color: var(--accent-light); text-decoration: none; margin-left: 0.5rem;">
+                                talktoilec@gmail.com
+                            </a>
+                        </p>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Based in Brunei Darussalam
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="legal-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                        <li><a href="accessibility.html">Accessibility Statement</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 i.lec - Intelligent Learning Empathetic Caregiver. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">"We've Got You. Here for your healing, not just your hustle."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Resource management functionality - Enhanced with animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const resourceCards = document.querySelectorAll('.resource-card');
+            const searchBox = document.querySelector('.search-box');
+            const topicFilter = document.querySelectorAll('.filter-select')[0];
+            const durationFilter = document.querySelectorAll('.filter-select')[1];
+            const savedResourcesSection = document.getElementById('saved-resources');
+            const savedResourcesGrid = document.getElementById('saved-resources-grid');
+            const clearSavedButton = document.getElementById('clear-saved');
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            // Load saved resources from localStorage
+            let savedResources = JSON.parse(localStorage.getItem('savedResources')) || [];
+            
+            // Initialize saved state for resources
+            initializeSavedState();
+            
+            // Category tab functionality with animations
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    categoryTabs.forEach(t => {
+                        t.classList.remove('active');
+                        t.style.transform = 'translateY(0)';
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    this.style.transform = 'translateY(-2px)';
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    if (category === 'saved') {
+                        // Show saved resources section with animation
+                        savedResourcesSection.style.display = 'block';
+                        setTimeout(() => {
+                            savedResourcesSection.classList.add('active');
+                        }, 10);
+                        displaySavedResources();
+                    } else {
+                        // Hide saved resources section
+                        savedResourcesSection.classList.remove('active');
+                        setTimeout(() => {
+                            if (!savedResourcesSection.classList.contains('active')) {
+                                savedResourcesSection.style.display = 'none';
+                            }
+                        }, 500);
+                        filterResources();
+                    }
+                });
+            });
+            
+            // Search and filter functionality with debouncing
+            let searchTimeout;
+            searchBox.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(filterResources, 300);
+            });
+            
+            topicFilter.addEventListener('change', filterResources);
+            durationFilter.addEventListener('change', filterResources);
+            
+            function filterResources() {
+                const activeCategory = document.querySelector('.category-tab.active').getAttribute('data-category');
+                const searchTerm = searchBox.value.toLowerCase();
+                const selectedTopic = topicFilter.value;
+                const selectedDuration = durationFilter.value;
+                
+                let visibleCount = 0;
+                
+                resourceCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    const topic = card.getAttribute('data-topic');
+                    const duration = card.getAttribute('data-duration');
+                    const title = card.querySelector('.resource-title').textContent.toLowerCase();
+                    const description = card.querySelector('.resource-description').textContent.toLowerCase();
+                    
+                    const categoryMatch = activeCategory === 'all' || category === activeCategory;
+                    const searchMatch = searchTerm === '' || title.includes(searchTerm) || description.includes(searchTerm);
+                    const topicMatch = selectedTopic === 'all' || topic === selectedTopic;
+                    const durationMatch = selectedDuration === 'all' || duration === selectedDuration;
+                    
+                    if (categoryMatch && searchMatch && topicMatch && durationMatch) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.5s ease';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Show message if no resources match
+                const gridContainer = document.getElementById('resources-grid');
+                let noResultsMessage = gridContainer.querySelector('.no-results-message');
+                
+                if (visibleCount === 0 && !noResultsMessage) {
+                    noResultsMessage = document.createElement('div');
+                    noResultsMessage.className = 'no-results-message';
+                    noResultsMessage.style.cssText = 'text-align: center; grid-column: 1 / -1; padding: 3rem;';
+                    noResultsMessage.innerHTML = `
+                        <i class="fas fa-search" style="font-size: 3rem; color: #CBD5E0; margin-bottom: 1rem;"></i>
+                        <h3 style="color: #718096; margin-bottom: 0.5rem;">No resources found</h3>
+                        <p style="color: #A0AEC0; max-width: 500px; margin: 0 auto;">Try adjusting your search or filters to find what you're looking for.</p>
+                    `;
+                    gridContainer.appendChild(noResultsMessage);
+                } else if (visibleCount > 0 && noResultsMessage) {
+                    noResultsMessage.remove();
+                }
+            }
+            
+            // Save/unsave button functionality with enhanced animations
+            const saveButtons = document.querySelectorAll('.save-button');
+            saveButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.resource-card');
+                    const resourceId = card.getAttribute('data-id');
+                    const title = card.querySelector('.resource-title').textContent;
+                    const savedIndicator = card.querySelector('.saved-indicator');
+                    
+                    // Add click animation
+                    this.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                    
+                    if (this.classList.contains('saved')) {
+                        // Unsave resource
+                        unsaveResource(resourceId, card, this, savedIndicator);
+                        showToast(`"${title}" removed from saved resources`, 'info');
+                    } else {
+                        // Save resource
+                        saveResource(resourceId, card, this, savedIndicator);
+                        showToast(`"${title}" saved to your library`, 'success');
+                    }
+                });
+            });
+            
+            // Clear all saved resources with confirmation
+            clearSavedButton.addEventListener('click', function() {
+                if (savedResources.length > 0) {
+                    // Add animation
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                    
+                    if (confirm('Are you sure you want to clear all saved resources?')) {
+                        savedResources = [];
+                        localStorage.setItem('savedResources', JSON.stringify(savedResources));
+                        initializeSavedState();
+                        displaySavedResources();
+                        showToast('All saved resources cleared', 'info');
+                    }
+                } else {
+                    showToast('No saved resources to clear', 'info');
+                }
+            });
+            
+            // Play/download button functionality
+            const actionButtons = document.querySelectorAll('.play-button, .download-button');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.resource-card');
+                    const title = card.querySelector('.resource-title').textContent;
+                    const type = card.querySelector('.resource-type').textContent;
+                    
+                    // Add click animation
+                    this.style.transform = 'translateY(-1px)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                    
+                    // In a real application, this would trigger actual media playback or download
+                    // For demo purposes, we'll show an alert
+                    if (type.includes('Audio') || type.includes('Video')) {
+                        alert(`Now playing: ${title}\n\nThis is a demo. In the full application, the media would play here.`);
+                    } else if (type.includes('Interactive')) {
+                        alert(`Opening interactive tool: ${title}\n\nThis is a demo. In the full application, the interactive tool would open here.`);
+                    } else {
+                        alert(`Downloading: ${title}\n\nThis is a demo. In the full application, the file would download here.`);
+                    }
+                });
+            });
+            
+            // Initialize saved state for all resources
+            function initializeSavedState() {
+                resourceCards.forEach(card => {
+                    const resourceId = card.getAttribute('data-id');
+                    const saveButton = card.querySelector('.save-button');
+                    const savedIndicator = card.querySelector('.saved-indicator');
+                    
+                    if (savedResources.includes(resourceId)) {
+                        // Mark as saved
+                        saveButton.classList.add('saved');
+                        saveButton.innerHTML = '<i class="fas fa-bookmark"></i>';
+                        savedIndicator.classList.add('active');
+                    } else {
+                        // Mark as not saved
+                        saveButton.classList.remove('saved');
+                        saveButton.innerHTML = '<i class="far fa-bookmark"></i>';
+                        savedIndicator.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Save a resource
+            function saveResource(resourceId, card, button, indicator) {
+                if (!savedResources.includes(resourceId)) {
+                    savedResources.push(resourceId);
+                    localStorage.setItem('savedResources', JSON.stringify(savedResources));
+                    
+                    button.classList.add('saved');
+                    button.innerHTML = '<i class="fas fa-bookmark"></i>';
+                    indicator.classList.add('active');
+                    
+                    // If we're on the saved resources page, update display
+                    const activeCategory = document.querySelector('.category-tab.active').getAttribute('data-category');
+                    if (activeCategory === 'saved') {
+                        displaySavedResources();
+                    }
+                }
+            }
+            
+            // Unsave a resource
+            function unsaveResource(resourceId, card, button, indicator) {
+                const index = savedResources.indexOf(resourceId);
+                if (index > -1) {
+                    savedResources.splice(index, 1);
+                    localStorage.setItem('savedResources', JSON.stringify(savedResources));
+                    
+                    button.classList.remove('saved');
+                    button.innerHTML = '<i class="far fa-bookmark"></i>';
+                    indicator.classList.remove('active');
+                    
+                    // If we're on the saved resources page, update display
+                    const activeCategory = document.querySelector('.category-tab.active').getAttribute('data-category');
+                    if (activeCategory === 'saved') {
+                        displaySavedResources();
+                    }
+                }
+            }
+            
+            // Display saved resources
+            function displaySavedResources() {
+                // Clear the saved resources grid
+                savedResourcesGrid.innerHTML = '';
+                
+                if (savedResources.length === 0) {
+                    // Show message if no saved resources
+                    savedResourcesGrid.innerHTML = `
+                        <div class="no-saved-message" style="text-align: center; grid-column: 1 / -1; padding: 3rem;">
+                            <i class="far fa-bookmark" style="font-size: 4rem; color: #CBD5E0; margin-bottom: 1.5rem;"></i>
+                            <h3 style="color: #718096; margin-bottom: 0.5rem;">No saved resources yet</h3>
+                            <p style="color: #A0AEC0; max-width: 500px; margin: 0 auto;">Save resources you find helpful to access them quickly later.</p>
+                        </div>
+                    `;
+                } else {
+                    // Add saved resources to the grid
+                    savedResources.forEach((resourceId, index) => {
+                        const originalCard = document.querySelector(`.resource-card[data-id="${resourceId}"]`);
+                        if (originalCard) {
+                            const cardClone = originalCard.cloneNode(true);
+                            
+                            // Add animation delay based on index
+                            cardClone.style.animationDelay = `${index * 0.1}s`;
+                            
+                            // Update the save button to show "Saved" state
+                            const saveButton = cardClone.querySelector('.save-button');
+                            saveButton.classList.add('saved');
+                            saveButton.innerHTML = '<i class="fas fa-bookmark"></i>';
+                            
+                            // Show the saved indicator
+                            const savedIndicator = cardClone.querySelector('.saved-indicator');
+                            savedIndicator.classList.add('active');
+                            
+                            // Add event listener to the save button in the clone
+                            saveButton.addEventListener('click', function() {
+                                const card = this.closest('.resource-card');
+                                const resourceId = card.getAttribute('data-id');
+                                const title = card.querySelector('.resource-title').textContent;
+                                
+                                unsaveResource(resourceId, card, this, savedIndicator);
+                                showToast(`"${title}" removed from saved resources`, 'info');
+                                
+                                // Update the display
+                                displaySavedResources();
+                            });
+                            
+                            // Add event listener to play/download buttons
+                            const actionButton = cardClone.querySelector('.play-button, .download-button');
+                            actionButton.addEventListener('click', function() {
+                                const card = this.closest('.resource-card');
+                                const title = card.querySelector('.resource-title').textContent;
+                                const type = card.querySelector('.resource-type').textContent;
+                                
+                                // Add click animation
+                                this.style.transform = 'translateY(-1px)';
+                                setTimeout(() => {
+                                    this.style.transform = '';
+                                }, 200);
+                                
+                                // Demo functionality
+                                if (type.includes('Audio') || type.includes('Video')) {
+                                    alert(`Now playing: ${title}\n\nThis is a demo. In the full application, the media would play here.`);
+                                } else if (type.includes('Interactive')) {
+                                    alert(`Opening interactive tool: ${title}\n\nThis is a demo. In the full application, the interactive tool would open here.`);
+                                } else {
+                                    alert(`Downloading: ${title}\n\nThis is a demo. In the full application, the file would download here.`);
+                                }
+                            });
+                            
+                            savedResourcesGrid.appendChild(cardClone);
+                        }
+                    });
+                }
+            }
+            
+            // Show toast notification with different types
+            function showToast(message, type = 'success') {
+                toastMessage.textContent = message;
+                
+                // Set color based on type
+                if (type === 'info') {
+                    toast.style.background = 'linear-gradient(135deg, var(--primary-light) 0%, #2A8D8F 100%)';
+                } else {
+                    toast.style.background = 'linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%)';
+                }
+                
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Animation for resource cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            resourceCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+            
+            // Add CSS for fadeIn animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
