@@ -3,1216 +3,2083 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>i.lec - Intelligent Learning Empathetic Caregiver</title>
+    <title>i.lec - Your Private Emotional Companion</title>
+    <meta name="description" content="i.lec is a private emotional companion - a safe space to vent, unload thoughts, and reflect without judgment. Not therapy, not diagnosis, just compassionate listening.">
+    <meta name="keywords" content="emotional support, mental wellness, Brunei, SEA, AI companion, privacy, non-judgmental, venting space">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="i.lec - Your Private Emotional Companion">
+    <meta property="og:description" content="A safe space to put your thoughts, so you don't carry them alone.">
+    <meta property="og:type" content="website">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --primary: #1E7875;
-            --primary-light: #2A9D8F;
-            --secondary: #F5E4C3;
-            --accent: #FF9E6D;
-            --accent-light: #FFB996;
-            --dark: #2D3748;
-            --light: #F7FAFC;
-            --gray-900: #111827;
-            --gray-800: #1F2937;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --primary-color: #1E7875;
+            --secondary-color: #F5E4C3;
+            --accent-color: #2A9D8F;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--light);
-            overflow-x: hidden;
+        
+        .font-heading { font-family: 'Poppins', sans-serif; }
+        .font-body { font-family: 'Lato', sans-serif; }
+        
+        html {
+            scroll-behavior: smooth;
         }
-
-        .container {
-            max-width: 1200px;
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .legal-content {
+            max-width: 4xl;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 2rem 1rem;
         }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        h1 {
-            font-size: 3rem;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-        }
-
-        h3 {
-            font-size: 1.8rem;
-        }
-
-        p {
+        
+        .legal-content h1 {
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: #1E7875;
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
         }
-
-        .section-title {
-            text-align: center;
-            color: var(--primary);
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 2px;
-        }
-
-        .tag {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
+        
+        .legal-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1E7875;
+            margin-top: 2rem;
             margin-bottom: 1rem;
-            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.2);
+        }
+        
+        .legal-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .legal-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .legal-content li {
+            margin-bottom: 0.5rem;
         }
 
         .sdg-badge {
             display: inline-flex;
             align-items: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #1E7875 0%, #2A9D8F 100%);
             color: white;
             padding: 0.5rem 1.5rem;
             border-radius: 50px;
             font-weight: bold;
-            margin: 0.5rem;
+            margin: 0.5rem 0.5rem 0.5rem 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Navigation */
-        nav {
-            background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 3px solid var(--primary);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--primary);
+        .benefit-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            overflow: hidden;
+            height: fit-content;
         }
 
-        .logo-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            margin-top: 8px;
+        .benefit-card.active {
+            border-left-color: #1E7875;
+            background-color: #f8fafc;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            align-items: center;
-            gap: 1.5rem;
+        .benefit-card:hover {
+            border-left-color: #1E7875;
+            transform: translateY(-2px);
         }
 
-        .nav-links li {
-            position: relative;
+        .benefit-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            transition: all 0.3s;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            position: relative;
+        .benefit-card.active .benefit-content {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1rem;
         }
 
-        .nav-links a.active {
-            color: var(--primary);
-            background: rgba(30, 120, 117, 0.1);
+        .benefit-arrow {
+            transition: transform 0.3s ease;
         }
 
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 2px;
+        .benefit-card.active .benefit-arrow {
+            transform: rotate(90deg);
         }
 
-        .nav-links a:hover:not(.active) {
-            color: var(--primary);
-            background: rgba(30, 120, 117, 0.08);
-        }
-
-        .nav-links .join-button {
-            background: linear-gradient(135deg, var(--accent) 0%, #FF8A4C 100%);
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
+        .value-proposition {
+            background: linear-gradient(135deg, #F5E4C3 0%, #F8F0E3 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
             position: relative;
             overflow: hidden;
-            animation: pulse 2s infinite;
         }
 
-        .nav-links .join-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 158, 109, 0.6);
-            animation: none;
+        .value-proposition::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(30, 120, 117, 0.1) 0%, transparent 70%);
+            z-index: 0;
         }
 
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
-            }
-            50% {
-                box-shadow: 0 4px 20px rgba(255, 158, 109, 0.7);
-            }
-            100% {
-                box-shadow: 0 4px 15px rgba(255, 158, 109, 0.4);
-            }
+        .problem-statement {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #1E7875;
+            border-left: 6px solid #1E7875;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.15);
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #1a5f5c 100%);
-            color: white;
-            padding: 6rem 0;
+        .impact-metric {
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        .impact-metric .number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #1E7875;
+            line-height: 1;
         }
 
-        .acronym-animation {
+        .wawasan-card {
+            background: linear-gradient(135deg, #1E7875 0%, #2A9D8F 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.2);
+        }
+
+        .jotform-feedback-button-container {
+            bottom: 20px !important;
+            right: 20px !important;
+            z-index: 9999 !important;
+        }
+
+        .abbreviation-highlight {
+            display: inline-block;
+            background: linear-gradient(135deg, #1E7875 0%, #2A9D8F 100%);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 0 0.3rem;
+            vertical-align: middle;
+        }
+
+        .abbreviation-container {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            min-height: 120px;
+            gap: 1.5rem;
+            margin: 1rem 0 2rem 0;
         }
 
-        .acronym-letter {
-            font-size: 4.5rem;
+        .abbreviation-item {
+            text-align: center;
+            padding: 1rem;
+            min-width: 200px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(30, 120, 117, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .abbreviation-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .abbreviation-letter {
+            font-size: 2.5rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #fff 0%, #F5E4C3 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            display: inline-block;
-            animation: float 6s ease-in-out infinite;
-            animation-delay: calc(var(--i) * 0.2s);
+            color: #1E7875;
+            line-height: 1;
+            margin-bottom: 0.5rem;
         }
 
-        .acronym-meaning {
-            font-size: 1.8rem;
-            font-weight: 600;
-            opacity: 0.9;
-            margin-top: 0.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 0.8rem 1.5rem;
-            border-radius: 15px;
-            display: inline-block;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        .abbreviation-word {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1E7875;
+            margin-bottom: 0.25rem;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        .abbreviation-meaning {
+            font-size: 0.85rem;
+            color: #4b5563;
         }
-
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
+        
+        .insight-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
-
-        /* Enhanced Wellness Challenge Section */
-        .wellness-challenge {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            color: var(--dark);
-            max-width: 1200px;
-            margin: 2rem auto 0;
-            padding: 3.5rem;
-            border-radius: 25px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: slideUp 0.8s ease forwards;
-            animation-delay: 0.5s;
-        }
-
-        @keyframes slideUp {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .wellness-title {
-            text-align: center;
-            color: var(--primary);
-            margin-bottom: 2.5rem;
-            font-size: 2.2rem;
-            position: relative;
-        }
-
-        .wellness-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 2px;
-        }
-
-        .wellness-subtitle {
-            text-align: center;
-            font-size: 1.4rem;
-            color: #555;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Infographic Grid */
-        .infographic-grid {
+        
+        .infographic-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
-
-        .infographic-item {
-            background: linear-gradient(135deg, #f8fdfd 0%, #f0f9f9 100%);
-            border-radius: 20px;
-            padding: 2.5rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 2rem;
-            border: 2px solid var(--primary-light);
-            box-shadow: 0 10px 30px rgba(30, 120, 117, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        .infographic-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
         }
-
-        .infographic-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(30, 120, 117, 0.15);
+        
+        .infographic-card:hover {
+            transform: translateY(-5px);
         }
-
+        
         .infographic-icon {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #1E7875 0%, #2A9D8F 100%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 20px;
-            font-size: 2.2rem;
+        }
+        
+        .infographic-icon i {
             color: white;
-            flex-shrink: 0;
-            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.2);
+            width: 28px;
+            height: 28px;
         }
-
-        .infographic-content {
-            flex: 1;
-        }
-
-        .infographic-content h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .infographic-content p {
-            color: #555;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 0;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2.5rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-top: 5px solid var(--accent);
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
+        
+        .infographic-number {
+            font-size: 2rem;
             font-weight: 900;
-            color: var(--primary);
+            color: #1E7875;
             line-height: 1;
-            margin-bottom: 0.5rem;
-            display: block;
+            margin: 0.5rem 0;
         }
-
-        .stat-label {
-            font-size: 1.2rem;
-            color: var(--dark);
+        
+        .infographic-label {
+            font-size: 1rem;
             font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .infographic-desc {
+            font-size: 0.85rem;
+            color: #6b7280;
             line-height: 1.4;
         }
 
-        /* Benefits Section - Clean 3x2 Grid */
-        .benefits {
-            background: linear-gradient(135deg, #F0F7F7 0%, #E8F4F4 100%);
+        /* Floating Navigation Panel Styles */
+        .floating-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: none;
+        }
+
+        .floating-nav.active {
+            display: block;
+        }
+
+        .nav-dots {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 12px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(30, 120, 117, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(30, 120, 117, 0.15);
+        }
+
+        .nav-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(30, 120, 117, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
             position: relative;
         }
 
-        .bento-grid-3x2 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, auto);
-            gap: 2rem;
-            margin-top: 3rem;
+        .nav-dot:hover {
+            background: rgba(30, 120, 117, 0.4);
+            transform: scale(1.3);
         }
 
-        .bento-item {
-            background: white;
+        .nav-dot.active {
+            background: #1E7875;
+            transform: scale(1.5);
+            box-shadow: 0 0 0 3px rgba(30, 120, 117, 0.2);
+        }
+
+        .nav-dot::after {
+            content: attr(data-title);
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1E7875;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-family: 'Lato', sans-serif;
+            box-shadow: 0 4px 12px rgba(30, 120, 117, 0.2);
+        }
+
+        .nav-dot:hover::after {
+            opacity: 1;
+            visibility: visible;
+            right: 22px;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .floating-nav {
+                right: 10px;
+            }
+            
+            .nav-dots {
+                padding: 16px 10px;
+                gap: 12px;
+            }
+            
+            .nav-dot {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .nav-dot::after {
+                font-size: 11px;
+                padding: 4px 10px;
+            }
+            
+            .nav-dot.active {
+                transform: scale(1.4);
+            }
+        }
+
+        /* Section IDs for navigation */
+        section[id] {
+            scroll-margin-top: 80px;
+        }
+
+        /* New styles for feature philosophy */
+        .feature-philosophy {
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 2px solid #e2e8f0;
+        }
+
+        .philosophy-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(30, 120, 117, 0.1);
+            color: #1E7875;
             border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border: 2px solid transparent;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            font-weight: 600;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            font-size: 0.9rem;
         }
 
-        .bento-item:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 25px 50px rgba(30, 120, 117, 0.15);
+        .unique-feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #1E7875;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
-        .bento-icon {
-            width: 80px;
-            height: 80px;
+        .what-we-dont-do {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid #fecaca;
+        }
+
+        /* Disclaimer box */
+        .disclaimer-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
+            border: 2px solid #f59e0b;
+            border-left: 6px solid #f59e0b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .boundary-statement {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px solid #1E7875;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .companion-icon {
+            background: rgba(30, 120, 117, 0.1);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #E8F4F4 0%, #F0F9F9 100%);
-            border-radius: 20px;
-            font-size: 2.2rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.1);
-            transition: all 0.3s ease;
+            margin: 0 auto 1rem;
         }
-
-        .bento-item:hover .bento-icon {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .bento-content h3 {
-            font-size: 1.4rem;
-            color: var(--dark);
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .bento-content p {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        /* Features Section - 3x2 Grid */
-        .features {
-            background: linear-gradient(135deg, #ffffff 0%, #F7FAFC 100%);
-        }
-
-        .features-grid-3x2 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, auto);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--primary);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        /* New Navigation Styles */
+        .nav-link {
             position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            border-radius: 0.375rem;
         }
-
-        .feature-card::before {
+        
+        .nav-link:hover {
+            background-color: rgba(30, 120, 117, 0.1);
+            color: #1E7875;
+        }
+        
+        .nav-link.active {
+            color: #1E7875;
+            font-weight: 700;
+        }
+        
+        .nav-link.active::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transform: scaleX(0);
+            bottom: -4px;
+            left: 1rem;
+            right: 1rem;
+            height: 3px;
+            background-color: #1E7875;
+            border-radius: 3px;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
             transition: transform 0.3s ease;
-            transform-origin: left;
         }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        
+        .mobile-menu.active {
+            transform: translateX(0);
         }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
+        
+        /* Hero Section Improvements */
+        .hero-gradient {
+            background: linear-gradient(135deg, #F5E4C3 0%, #FFFFFF 30%, #F5E4C3 100%);
         }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            width: 80px;
-            height: 80px;
+        
+        .cta-button {
+            background: linear-gradient(135deg, #1E7875 0%, #2A9D8F 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 120, 117, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(30, 120, 117, 0.4);
+        }
+        
+        .cta-button-secondary {
+            background: white;
+            color: #1E7875;
+            border: 2px solid #1E7875;
+        }
+        
+        .cta-button-secondary:hover {
+            background: #1E7875;
+            color: white;
+        }
+        
+        /* Stats Counter Animation */
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Loading Animation */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1E7875;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Testimonial Styles */
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(30, 120, 117, 0.1);
+            font-family: serif;
+        }
+        
+        /* FAQ Styles */
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .faq-question {
+            padding: 1.5rem 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-bottom: 1.5rem;
+        }
+        
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+        
+        /* Coming Soon Badge */
+        .coming-soon {
+            position: relative;
+        }
+        
+        .coming-soon::after {
+            content: 'Coming Soon';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #f59e0b;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .stagger-delay-1 { animation-delay: 0.1s; }
+        .stagger-delay-2 { animation-delay: 0.2s; }
+        .stagger-delay-3 { animation-delay: 0.3s; }
+        .stagger-delay-4 { animation-delay: 0.4s; }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #1E7875;
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #E8F4F4 0%, #F0F9F9 100%);
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(30, 120, 117, 0.1);
-            flex-shrink: 0;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(30, 120, 117, 0.3);
         }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-            transition: transform 0.3s ease;
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
         }
-
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .feature-card p {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        /* Footer - Updated to bg-gray-900 */
-        footer {
-            background: var(--gray-900);
-            color: white;
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-        }
-
-        .footer-section h3 {
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s;
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary);
-            transform: translateX(5px);
-        }
-
-        .contact-info {
-            margin-top: 1.5rem;
-        }
-
-        .contact-info p {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .contact-info i {
-            margin-right: 1rem;
-            color: var(--secondary);
-            width: 20px;
-            flex-shrink: 0;
-        }
-
-        .legal-links {
-            list-style: none;
-        }
-
-        .legal-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .legal-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .legal-links a:hover {
-            color: var(--secondary);
-        }
-
-        .copyright {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .bento-grid-3x2,
-            .features-grid-3x2,
-            .infographic-grid,
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: auto;
-            }
-            
-            .footer-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .wellness-challenge {
-                max-width: 95%;
-            }
-        }
-
-        @media (max-width: 992px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            h3 {
-                font-size: 1.5rem;
-            }
-            
-            .nav-links {
-                gap: 1rem;
-            }
-            
-            .bento-grid-3x2,
-            .features-grid-3x2,
-            .infographic-grid,
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .wellness-challenge {
-                padding: 2.5rem;
-            }
-            
-            .infographic-item {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-                gap: 1.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                padding: 1rem 0;
-            }
-            
-            .nav-links {
-                margin-top: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.5rem;
-            }
-            
-            .hero {
-                padding: 4rem 0;
-            }
-            
-            .acronym-letter {
-                font-size: 3.5rem;
-            }
-            
-            .acronym-meaning {
-                font-size: 1.4rem;
-            }
-            
-            .wellness-title {
-                font-size: 1.8rem;
-            }
-            
-            .wellness-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .stat-number {
-                font-size: 2.8rem;
-            }
-            
-            section {
-                padding: 3rem 0;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-            
-            .contact-info p {
-                justify-content: center;
-                flex-wrap: wrap;
-            }          
-            
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            .acronym-letter {
-                font-size: 2.8rem;
-            }
-            
-            .acronym-meaning {
-                font-size: 1.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-            
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .nav-links a {
-                display: block;
-                padding: 0.8rem;
-            }
-            
-            .wellness-challenge {
-                padding: 2rem;
-            }
-            
-            .infographic-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.8rem;
-            }
-            
-            .bento-icon,
-            .feature-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.8rem;
-            }
-            
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(30, 120, 117, 0.4);
         }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ilec-primary': '#1E7875',
+                        'ilec-secondary': '#F5E4C3',
+                        'ilec-accent': '#2A9D8F',
+                    },
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Initialize Lucide Icons and page navigation
+        window.addEventListener('DOMContentLoaded', (event) => {
+            lucide.createIcons();
+            
+            // Set up page navigation
+            const pages = document.querySelectorAll('.page');
+            const navLinks = document.querySelectorAll('[data-page]');
+            const navButton = document.getElementById('nav-button');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            // Show home page by default
+            showPage('home');
+            
+            // Add event listeners to navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.getAttribute('data-page');
+                    showPage(pageId);
+                    
+                    // Update active nav link
+                    updateActiveNavLink(pageId);
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                    }
+                    
+                    // Update URL without page reload
+                    window.history.pushState({}, '', `#${pageId}`);
+                });
+            });
+            
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', () => {
+                const hash = window.location.hash.substring(1) || 'home';
+                showPage(hash);
+                updateActiveNavLink(hash);
+            });
+            
+            // Check for hash on initial load
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                showPage(hash);
+                updateActiveNavLink(hash);
+            }
+            
+            // Set up benefit card toggle functionality
+            const benefitCards = document.querySelectorAll('.benefit-card');
+            benefitCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Toggle the clicked card
+                    card.classList.toggle('active');
+                });
+            });
+            
+            // Mobile menu toggle
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+            
+            mobileMenuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target) && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+            
+            // Back to top button
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // FAQ Toggle
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Animate counters
+            function animateCounters() {
+                const counters = document.querySelectorAll('.counter');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000; // 2 seconds
+                    const step = target / (duration / 16); // 60fps
+                    let current = 0;
+                    
+                    const updateCounter = () => {
+                        current += step;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target;
+                        }
+                    };
+                    
+                    updateCounter();
+                });
+            }
+            
+            // Observe when counters come into view
+            const observerOptions = {
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            const statsSection = document.getElementById('stats');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+            
+            function showPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show selected page
+                const activePage = document.getElementById(`${pageId}-page`);
+                if (activePage) {
+                    activePage.classList.add('active');
+                } else {
+                    // Fallback to home page if page doesn't exist
+                    document.getElementById('home-page').classList.add('active');
+                }
+                
+                // Update navigation button text and link
+                if (pageId === 'privacy' || pageId === 'terms') {
+                    navButton.innerHTML = 'Back to Home';
+                    navButton.setAttribute('data-page', 'home');
+                    navButton.removeAttribute('target');
+                    navButton.removeAttribute('rel');
+                    navButton.setAttribute('href', '#');
+                } else if (pageId === 'home') {
+                    navButton.innerHTML = 'Share Your Thoughts';
+                    // UPDATED: Changed to new Google Form URL
+                    navButton.setAttribute('href', 'https://forms.gle/Lma9ZoBrmigXC1xZA');
+                    navButton.setAttribute('target', '_blank');
+                    navButton.setAttribute('rel', 'noopener noreferrer');
+                    navButton.removeAttribute('data-page');
+                }
+                
+                // Scroll to top when changing pages
+                window.scrollTo(0, 0);
+            }
+            
+            function updateActiveNavLink(pageId) {
+                // Remove active class from all nav links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Add active class to current page nav link
+                const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+
+            // Floating Navigation Panel Logic
+            const floatingNav = document.createElement('div');
+            floatingNav.className = 'floating-nav';
+            floatingNav.innerHTML = `
+                <div class="nav-dots">
+                    <div class="nav-dot" data-section="hero" data-title="Home"></div>
+                    <div class="nav-dot" data-section="benefits" data-title="Benefits"></div>
+                    <div class="nav-dot" data-section="vision" data-title="Vision"></div>
+                    <div class="nav-dot" data-section="features" data-title="Features"></div>
+                    <div class="nav-dot" data-section="audience" data-title="Who We Serve"></div>
+                    <div class="nav-dot" data-section="contact" data-title="Contact"></div>
+                </div>
+            `;
+            document.body.appendChild(floatingNav);
+
+            // Add IDs to sections for navigation
+            const sections = {
+                'hero': document.querySelector('section.hero-gradient'),
+                'benefits': document.querySelector('section.py-16.bg-white'),
+                'vision': document.querySelector('section.py-16.bg-gradient-to-r'),
+                'features': document.querySelector('section.py-16.bg-gray-50'),
+                'audience': document.querySelector('section.py-16.bg-ilec-secondary'),
+                'contact': document.getElementById('contact')
+            };
+
+            // Add IDs to sections
+            Object.entries(sections).forEach(([id, section]) => {
+                if (section) {
+                    section.id = id;
+                }
+            });
+
+            // Handle floating nav dot clicks
+            floatingNav.querySelectorAll('.nav-dot').forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const sectionId = dot.getAttribute('data-section');
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Show/hide floating nav based on scroll and page
+            let scrollTimer;
+            let isScrolling = false;
+            
+            window.addEventListener('scroll', () => {
+                // Show nav only on home page
+                const homePage = document.getElementById('home-page');
+                if (homePage.classList.contains('active')) {
+                    floatingNav.classList.add('active');
+                    
+                    // Update active dot based on scroll position
+                    if (!isScrolling) {
+                        isScrolling = true;
+                        clearTimeout(scrollTimer);
+                        scrollTimer = setTimeout(() => {
+                            updateActiveDot();
+                            isScrolling = false;
+                        }, 50);
+                    }
+                } else {
+                    floatingNav.classList.remove('active');
+                }
+            });
+
+            function updateActiveDot() {
+                const scrollPosition = window.scrollY + 150; // Adjusted offset
+                const dots = floatingNav.querySelectorAll('.nav-dot');
+                
+                // Find which section is currently in view
+                let activeSection = '';
+                let closestDistance = Infinity;
+                
+                Object.entries(sections).forEach(([id, section]) => {
+                    if (section) {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+                        const sectionBottom = sectionTop + sectionHeight;
+                        
+                        // Check if current scroll position is within this section
+                        const isInSection = scrollPosition >= sectionTop && scrollPosition <= sectionBottom;
+                        
+                        // Calculate distance to the top of the section
+                        const distance = Math.abs(scrollPosition - sectionTop);
+                        
+                        if (isInSection && distance < closestDistance) {
+                            closestDistance = distance;
+                            activeSection = id;
+                        }
+                        
+                        // Special case for contact section - if we're near the bottom
+                        if (id === 'contact' && 
+                            scrollPosition >= sectionTop - 200 && 
+                            scrollPosition <= document.body.scrollHeight - 100) {
+                            activeSection = 'contact';
+                        }
+                    }
+                });
+
+                // Fallback: If no section is active but we're at the top
+                if (!activeSection && scrollPosition < 300) {
+                    activeSection = 'hero';
+                }
+
+                // Update active dot
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if (dot.getAttribute('data-section') === activeSection) {
+                        dot.classList.add('active');
+                    }
+                });
+            }
+
+            // Listen for scroll events to update dots
+            window.addEventListener('scroll', updateActiveDot);
+            
+            // Initial update
+            updateActiveDot();
+        });
+    </script>
 </head>
-<body>
+<body class="font-body bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" class="back-to-top">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </div>
+
     <!-- Navigation -->
-    <nav>
-        <div class="container nav-container">
-            <div class="logo">
-                i<div class="logo-dot"></div>lec
+    <nav class="sticky top-0 z-20 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="text-2xl font-heading text-ilec-primary font-black cursor-pointer" data-page="home">
+                        <span class="abbreviation-highlight">i.lec</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#" data-page="home" class="nav-link active">Home</a>
+                    <!-- UPDATED: Changed to about.html -->
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="#" data-page="resources" class="nav-link coming-soon">Resources</a>
+                    <a href="#" data-page="assessment" class="nav-link coming-soon">Assessment</a>
+                    <a href="#" data-page="join" class="nav-link">Join</a>
+                    <!-- UPDATED: Changed to new Google Form URL -->
+                    <a id="nav-button" href="https://forms.gle/Lma9ZoBrmigXC1xZA" target="_blank" rel="noopener noreferrer" class="ml-4 px-4 py-2 bg-ilec-primary text-white rounded-full text-sm font-semibold hover:bg-ilec-primary/90 transition-colors shadow-md hover:shadow-lg">
+                        Share Your Thoughts
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="p-2 rounded-md text-gray-700 hover:text-ilec-primary hover:bg-gray-100">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="assessment.html">Assessment</a></li>
-                <li><a href="join.html" class="join-button">Join Us</a></li>
-            </ul>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu fixed inset-y-0 right-0 w-64 bg-white shadow-xl z-30 md:hidden">
+                <div class="p-5">
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="text-xl font-heading text-ilec-primary font-black">i.lec</div>
+                        <button id="mobile-menu-close" class="p-2 rounded-md text-gray-700 hover:text-ilec-primary hover:bg-gray-100">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <a href="#" data-page="home" class="nav-link active block py-3 px-4">Home</a>
+                        <!-- UPDATED: Changed to about.html in mobile menu -->
+                        <a href="about.html" class="nav-link block py-3 px-4">About</a>
+                        <a href="#" data-page="resources" class="nav-link block py-3 px-4">
+                            <span>Resources</span>
+                            <span class="ml-2 text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">Soon</span>
+                        </a>
+                        <a href="#" data-page="assessment" class="nav-link block py-3 px-4">
+                            <span>Assessment</span>
+                            <span class="ml-2 text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">Soon</span>
+                        </a>
+                        <a href="#" data-page="join" class="nav-link block py-3 px-4">Join</a>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <!-- UPDATED: Changed to new Google Form URL for mobile button -->
+                        <a id="mobile-nav-button" href="https://forms.gle/Lma9ZoBrmigXC1xZA" target="_blank" rel="noopener noreferrer" class="w-full text-center block px-4 py-3 bg-ilec-primary text-white rounded-full text-sm font-semibold hover:bg-ilec-primary/90 transition-colors shadow-md">
+                            Share Your Thoughts
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="acronym-animation">
-                <div class="acronym-letter" style="--i:0">I</div>
-                <div class="acronym-letter" style="--i:1">.</div>
-                <div class="acronym-letter" style="--i:2">L</div>
-                <div class="acronym-letter" style="--i:3">E</div>
-                <div class="acronym-letter" style="--i:4">C</div>
-            </div>
-            
-            <div class="acronym-meaning">
-                Intelligent Learning Empathetic Caregiver
-            </div>
-            
-            <p>"We've Got You. Here for your healing, not just your hustle."</p>
-            
-            <div class="sdg-badge">
-                <i class="fas fa-bullseye"></i>
-                Aligned with UN SDG 3 & Wawasan 2035
-            </div>
-            
-            <!-- Enhanced Wellness Challenge Section -->
-            <div class="wellness-challenge">
-                <h2 class="wellness-title">The Modern Wellness Challenge</h2>
-                <p class="wellness-subtitle">In today's fast-paced world, emotional fatigue is the silent epidemic. Traditional support systems can't keep up with the growing need for accessible, timely mental wellness care.</p>
-                
-                <div class="infographic-grid">
-                    <div class="infographic-item">
-                        <div class="infographic-icon">
-                            <i class="fas fa-brain"></i>
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <main>
+            <!-- Hero Section -->
+            <section id="hero" class="hero-gradient py-16 sm:py-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-8">
+                        <span class="sdg-badge fade-in">
+                            <i data-lucide="target" class="w-4 h-4 mr-2"></i>
+                            Aligned with UN SDG 3 & Wawasan 2035
+                        </span>
+                    </div>
+                    
+                    <h1 class="text-5xl sm:text-6xl md:text-7xl font-heading font-extrabold text-ilec-primary mb-4 leading-tight text-center fade-in">
+                        <span class="abbreviation-highlight">i.lec</span>
+                    </h1>
+                    
+                    <p class="text-2xl sm:text-3xl font-heading font-bold text-gray-700 mb-8 text-center fade-in stagger-delay-1">
+                        Your private emotional companion
+                    </p>
+                    
+                    <!-- i.lec Abbreviation Explanation -->
+                    <div class="abbreviation-container fade-in stagger-delay-2">
+                        <div class="abbreviation-item">
+                            <div class="abbreviation-letter">I</div>
+                            <div class="abbreviation-word">Intelligent</div>
+                            <div class="abbreviation-meaning">AI-driven emotional companion</div>
                         </div>
-                        <div class="infographic-content">
-                            <h3>Silent Mental Load</h3>
-                            <p>70% of professionals carry invisible stress that affects their daily performance and well-being, often going unaddressed until crisis points.</p>
+                        <div class="abbreviation-item">
+                            <div class="abbreviation-letter">L</div>
+                            <div class="abbreviation-word">Learning</div>
+                            <div class="abbreviation-meaning">Understands your emotional patterns</div>
+                        </div>
+                        <div class="abbreviation-item">
+                            <div class="abbreviation-letter">E</div>
+                            <div class="abbreviation-word">Empathetic</div>
+                            <div class="abbreviation-meaning">Non-judgmental listening space</div>
+                        </div>
+                        <div class="abbreviation-item">
+                            <div class="abbreviation-letter">C</div>
+                            <div class="abbreviation-word">Companion</div>
+                            <div class="abbreviation-meaning">Always here to listen</div>
                         </div>
                     </div>
                     
-                    <div class="infographic-item">
-                        <div class="infographic-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="infographic-content">
-                            <h3>Timing Disconnect</h3>
-                            <p>Peak stress occurs during evenings and weekends when traditional support options are least available, creating dangerous gaps in care.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="infographic-item">
-                        <div class="infographic-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="infographic-content">
-                            <h3>Prevention Gap</h3>
-                            <p>Early intervention could prevent 65% of mental health crises, but current systems focus on treatment rather than prevention.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="infographic-item">
-                        <div class="infographic-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="infographic-content">
-                            <h3>Growing Awareness Gap</h3>
-                            <p>Awareness of mental wellness is increasing 3x faster than accessible support options, leaving millions without proper care.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <span class="stat-number">70%</span>
-                        <div class="stat-label">Professionals experience workplace stress</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">65%</span>
-                        <div class="stat-label">Reduction in crisis with early intervention</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">24/7</span>
-                        <div class="stat-label">Support gap during peak stress hours</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="benefits" class="benefits">
-        <div class="container">
-            <h2 class="section-title">Tangible Benefits You'll Experience</h2>
-            <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">Experience measurable improvements in mental wellness through our innovative approach.</p>
-            
-            <div class="bento-grid-3x2">
-                <!-- Benefit 1 -->
-                <div class="bento-item">
-                    <div class="bento-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="bento-content">
-                        <h3>Preventive Care</h3>
-                        <p>AI-powered mood tracking catches stress signs early, preventing escalation.</p>
-                    </div>
-                </div>
-
-                <!-- Benefit 2 -->
-                <div class="bento-item">
-                    <div class="bento-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <div class="bento-content">
-                        <h3>Instant Support</h3>
-                        <p>24/7 AI companion provides immediate relief during challenging moments.</p>
-                    </div>
-                </div>
-
-                <!-- Benefit 3 -->
-                <div class="bento-item">
-                    <div class="bento-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="bento-content">
-                        <h3>Personalized Growth</h3>
-                        <p>Tailored strategies adapt to your unique stress patterns and progress.</p>
-                    </div>
-                </div>
-
-                <!-- Benefit 4 -->
-                <div class="bento-item">
-                    <div class="bento-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <div class="bento-content">
-                        <h3>Cost-Effective</h3>
-                        <p>Access premium support for less than 10% of traditional therapy costs.</p>
-                    </div>
-                </div>
-
-                <!-- Benefit 5 -->
-                <div class="bento-item">
-                    <div class="bento-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="bento-content">
-                        <h3>Time-Efficient</h3>
-                        <p>5-minute daily check-ins prevent lengthy therapy sessions, fitting your schedule.</p>
-                    </div>
-                </div>
-
-                <!-- Benefit 6 -->
-                <div class="bento-item">
-                    <div class="bento-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="bento-content">
-                        <h3>National Impact</h3>
-                        <p>Contribute to Brunei's Wawasan 2035 goals while improving your well-being.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">How i.lec Delivers Tangible Value</h2>
-            <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">Our comprehensive system provides measurable benefits through innovative technology and personalized support.</p>
-            
-            <div class="features-grid-3x2">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-microphone"></i>
-                    </div>
-                    <h3>AI Vocal Assistant</h3>
-                    <p>Empathetic voice-based support available 24/7, especially during peak stress hours.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-clipboard-list"></i>
-                    </div>
-                    <h3>Personalized Management</h3>
-                    <p>Tailored strategies continuously adapt to your progress for higher success rates.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>24/7 Chatbot System</h3>
-                    <p>Instant, non-judgmental support and mental health resources anytime, anywhere.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>Resource Library</h3>
-                    <p>Curated content with evidence-based techniques for effective stress management.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h3>Progress Tracking</h3>
-                    <p>Detailed analytics help you stay on track and celebrate wellness milestones.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users-cog"></i>
-                    </div>
-                    <h3>Community Support</h3>
-                    <p>Connect with others on similar wellness journeys in supportive group discussions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-<footer id="contact">
-    <div class="container">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>i.lec</h3>
-                <p>Intelligent Learning Empathetic Caregiver - Providing 24/7 accessible mental wellness support to prevent burnout and empower individuals.</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="resources.html">Resources</a></li>
-                    <li><a href="assessment.html">Assessment</a></li>
-                    <li><a href="join.html">Join Us</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <div class="contact-info">
-                    <p>
-                        <i class="fas fa-envelope"></i>
-                        <span>Email:</span>
-                        <a href="mailto:talktoilec@gmail.com" style="color: var(--accent-light); text-decoration: none; margin-left: 0.5rem;">
-                            talktoilec@gmail.com
+                    <!-- Hero CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-10 mb-12 fade-in stagger-delay-3">
+                        <a href="#" data-page="join" class="cta-button text-center">
+                            <i data-lucide="heart" class="w-5 h-5 inline mr-2"></i>
+                            Start Your Journey
                         </a>
+                        <a href="#how-it-works" class="cta-button cta-button-secondary text-center">
+                            <i data-lucide="play-circle" class="w-5 h-5 inline mr-2"></i>
+                            How It Works
+                        </a>
+                    </div>
+                    
+                    <!-- Clear Positioning Statement -->
+                    <div class="bg-gradient-to-r from-ilec-primary/10 to-ilec-accent/10 p-6 rounded-2xl border border-ilec-primary/30 max-w-6xl mx-auto mb-10 fade-in stagger-delay-4">
+                        <div class="flex flex-col md:flex-row items-start">
+                            <div class="md:mr-6 mb-4 md:mb-0">
+                                <div class="w-16 h-16 bg-ilec-primary/20 rounded-full flex items-center justify-center mx-auto md:mx-0">
+                                    <i data-lucide="heart" class="w-8 h-8 text-ilec-primary"></i>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-heading font-bold text-ilec-primary mb-3 text-center md:text-left">What i.lec Is All About</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-start">
+                                        <i data-lucide="check-circle" class="w-6 h-6 text-green-500 mr-3 mt-1 flex-shrink-0"></i>
+                                        <div>
+                                            <strong class="text-gray-800 text-lg">We ARE your private emotional companion:</strong>
+                                            <p class="text-gray-700 mt-1">A safe, judgment-free space where you can vent, unload thoughts, and reflect without pressure or analysis. Think of us as your always-available listening ear.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i data-lucide="help-circle" class="w-6 h-6 text-amber-500 mr-3 mt-1 flex-shrink-0"></i>
+                                        <div>
+                                            <strong class="text-gray-800 text-lg">To be clear, we're NOT medical professionals:</strong>
+                                            <p class="text-gray-700 mt-1">i.lec is not a therapy platform, diagnostic tool, or crisis service. We don't provide medical advice, diagnosis, or treatment. We're companions, not clinicians.</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white/70 p-4 rounded-lg border border-gray-200">
+                                        <div class="flex items-start">
+                                            <i data-lucide="info" class="w-5 h-5 text-ilec-primary mr-3 mt-0.5 flex-shrink-0"></i>
+                                            <p class="text-gray-700">
+                                                <strong>Important:</strong> If you're experiencing a medical emergency or crisis, please contact local emergency services or a healthcare professional immediately.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-12">
+                        <div class="text-center p-4">
+                            <div class="text-3xl font-bold text-ilec-primary counter" data-target="24">24</div>
+                            <div class="text-sm text-gray-600">/7 Availability</div>
+                        </div>
+                        <div class="text-center p-4">
+                            <div class="text-3xl font-bold text-ilec-primary counter" data-target="100">100</div>
+                            <div class="text-sm text-gray-600">% Private</div>
+                        </div>
+                        <div class="text-center p-4">
+                            <div class="text-3xl font-bold text-ilec-primary counter" data-target="0">0</div>
+                            <div class="text-sm text-gray-600">Human Review</div>
+                        </div>
+                        <div class="text-center p-4">
+                            <div class="text-3xl font-bold text-ilec-primary">∞</div>
+                            <div class="text-sm text-gray-600">Listening Capacity</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem Statement -->
+            <section class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="problem-statement max-w-6xl mx-auto">
+                        <div class="mb-8">
+                            <h3 class="text-3xl font-heading font-bold text-gray-900 mb-6 text-center flex items-center justify-center">
+                                <i data-lucide="brain" class="w-8 h-8 text-ilec-primary mr-3"></i>
+                                The Emotional Overload Problem
+                            </h3>
+                            <p class="text-xl text-gray-700 mb-6 text-center">
+                                "I have too much in my head and nowhere to put it."
+                            </p>
+                            <p class="text-lg text-gray-600 mb-8 text-center">
+                                This simple statement captures the experience of millions who carry emotional weight alone, without needing clinical intervention but still needing a compassionate space to process thoughts.
+                            </p>
+                        </div>
+                        
+                        <div class="infographic-container">
+                            <div class="infographic-card">
+                                <div class="infographic-icon">
+                                    <i data-lucide="users"></i>
+                                </div>
+                                <div class="infographic-number">80%</div>
+                                <div class="infographic-label">Young Adults (18-25)</div>
+                                <div class="infographic-desc">Experience emotional overload but avoid clinical services due to stigma or cost</div>
+                            </div>
+                            
+                            <div class="infographic-card">
+                                <div class="infographic-icon">
+                                    <i data-lucide="clock"></i>
+                                </div>
+                                <div class="infographic-number">Evenings & Weekends</div>
+                                <div class="infographic-label">Peak Need Times</div>
+                                <div class="infographic-desc">When traditional support systems are least accessible but emotional processing is highest</div>
+                            </div>
+                            
+                            <div class="infographic-card">
+                                <div class="infographic-icon">
+                                    <i data-lucide="shield"></i>
+                                </div>
+                                <div class="infographic-label">Privacy Concerns</div>
+                                <div class="infographic-desc">People want to share without fear of judgment, labeling, or medical records</div>
+                            </div>
+                            
+                            <div class="infographic-card">
+                                <div class="infographic-icon">
+                                    <i data-lucide="message-square"></i>
+                                </div>
+                                <div class="infographic-label">Listening vs. Fixing</div>
+                                <div class="infographic-desc">Most emotional overload doesn't need solutions—just compassionate listening</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-ilec-primary/10 p-5 rounded-lg border border-ilec-primary/20 mt-8">
+                            <div class="flex flex-col md:flex-row items-center">
+                                <div class="md:mr-6 mb-4 md:mb-0">
+                                    <div class="w-16 h-16 bg-ilec-primary rounded-full flex items-center justify-center">
+                                        <i data-lucide="lightbulb" class="w-8 h-8 text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-bold text-ilec-primary text-lg mb-2">Our Founding Insight</h4>
+                                    <p class="text-gray-700">
+                                        Emotional wellness exists on a spectrum. Not every emotional challenge needs clinical intervention, but every emotional experience deserves a safe space for expression. i.lec fills the gap between "nothing" and "therapy"—providing compassionate companionship for everyday emotional processing.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works -->
+            <section id="how-it-works" class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-4 text-center">
+                        How i.lec Works
+                    </h2>
+                    <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                        Simple, safe emotional support designed around your needs and privacy
                     </p>
-                    <p>
-                        <i class="fas fa-map-marker-alt"></i>
-                        Based in Brunei Darussalam
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                        <div class="text-center p-6">
+                            <div class="w-20 h-20 bg-ilec-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-lucide="message-square" class="w-10 h-10 text-ilec-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">1. Start Talking</h3>
+                            <p class="text-gray-600">Begin a conversation whenever you need. No appointments, no waiting.</p>
+                        </div>
+                        
+                        <div class="text-center p-6">
+                            <div class="w-20 h-20 bg-ilec-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-lucide="ear" class="w-10 h-10 text-ilec-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">2. Be Heard</h3>
+                            <p class="text-gray-600">Share your thoughts freely. We listen without judgment or interruption.</p>
+                        </div>
+                        
+                        <div class="text-center p-6">
+                            <div class="w-20 h-20 bg-ilec-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-lucide="refresh-cw" class="w-10 h-10 text-ilec-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">3. Feel Lighter</h3>
+                            <p class="text-gray-600">Experience emotional release and clarity without pressure to "fix" anything.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Conversation Example -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg max-w-4xl mx-auto">
+                        <h3 class="text-2xl font-heading font-bold text-ilec-primary mb-6 text-center">
+                            A Glimpse Into an i.lec Conversation
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-ilec-primary text-white p-3 rounded-lg mr-3">
+                                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded-lg flex-1">
+                                    <strong class="text-ilec-primary">i.lec:</strong> Hi there. I'm here with you, no pressure to say anything perfectly. How's your day been?
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-gray-300 text-gray-800 p-3 rounded-lg mr-3">
+                                    <i data-lucide="user" class="w-4 h-4"></i>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded-lg flex-1 border border-blue-100">
+                                    <strong class="text-gray-700">You:</strong> Honestly, it's been overwhelming. Work has been non-stop and I just feel... full.
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-ilec-primary text-white p-3 rounded-lg mr-3">
+                                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded-lg flex-1">
+                                    <strong class="text-ilec-primary">i.lec:</strong> That sounds heavy. Sometimes days just pile up on us. Would you like to talk more about what's feeling overwhelming, or would you prefer we just sit with this for a moment?
+                                </div>
+                            </div>
+                            <div class="text-center text-gray-500 text-sm mt-6 italic">
+                                ...the conversation continues at your pace, with reflection not advice, listening not fixing
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Benefits Section -->
+            <section id="benefits" class="py-16 sm:py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-4 text-center">
+                        Why Choose i.lec
+                    </h2>
+                    <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                        Emotional support reimagined for privacy, accessibility, and genuine companionship
                     </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Benefit 1 -->
+                        <div class="benefit-card bg-white p-5 rounded-xl shadow-lg border-l-4 border-ilec-accent">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="lock" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <h3 class="text-lg font-heading font-bold text-gray-900">Complete Privacy</h3>
+                                </div>
+                                <i data-lucide="chevron-right" class="benefit-arrow w-4 h-4 text-ilec-primary flex-shrink-0"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Your conversations stay between you and i.lec. No human review, no data sharing, complete confidentiality.
+                                </p>
+                                <div class="bg-ilec-primary/5 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-ilec-primary text-sm mb-1">How we protect you:</h4>
+                                    <ul class="list-disc pl-4 space-y-1 text-xs text-gray-700">
+                                        <li>End-to-end encryption</li>
+                                        <li>No conversation storage</li>
+                                        <li>Anonymous usage</li>
+                                        <li>GDPR-compliant design</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Benefit 2 -->
+                        <div class="benefit-card bg-white p-5 rounded-xl shadow-lg border-l-4 border-ilec-accent">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="clock" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <h3 class="text-lg font-heading font-bold text-gray-900">Always Available</h3>
+                                </div>
+                                <i data-lucide="chevron-right" class="benefit-arrow w-4 h-4 text-ilec-primary flex-shrink-0"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Emotional needs don't follow office hours. Access support whenever you need it—2 AM or 2 PM.
+                                </p>
+                                <div class="bg-ilec-primary/5 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-ilec-primary text-sm mb-1">Always there for you:</h4>
+                                    <ul class="list-disc pl-4 space-y-1 text-xs text-gray-700">
+                                        <li>24/7/365 availability</li>
+                                        <li>No appointment scheduling</li>
+                                        <li>Instant connection</li>
+                                        <li>Weekend and holiday access</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Benefit 3 -->
+                        <div class="benefit-card bg-white p-5 rounded-xl shadow-lg border-l-4 border-ilec-accent">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="heart" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <h3 class="text-lg font-heading font-bold text-gray-900">No Judgment Zone</h3>
+                                </div>
+                                <i data-lucide="chevron-right" class="benefit-arrow w-4 h-4 text-ilec-primary flex-shrink-0"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Share your deepest thoughts without fear of being analyzed, diagnosed, or told what to feel.
+                                </p>
+                                <div class="bg-ilec-primary/5 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-ilec-primary text-sm mb-1">Our approach:</h4>
+                                    <ul class="list-disc pl-4 space-y-1 text-xs text-gray-700">
+                                        <li>Validation without solutions</li>
+                                        <li>Reflection without fixing</li>
+                                        <li>Acceptance without conditions</li>
+                                        <li>Permission-based conversations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Benefit 4 -->
+                        <div class="benefit-card bg-white p-5 rounded-xl shadow-lg border-l-4 border-ilec-accent">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="globe" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <h3 class="text-lg font-heading font-bold text-gray-900">Cultural Sensitivity</h3>
+                                </div>
+                                <i data-lucide="chevron-right" class="benefit-arrow w-4 h-4 text-ilec-primary flex-shrink-0"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Designed with deep understanding of Brunei and SEA cultural contexts around emotional expression.
+                                </p>
+                                <div class="bg-ilec-primary/5 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-ilec-primary text-sm mb-1">Cultural considerations:</h4>
+                                    <ul class="list-disc pl-4 space-y-1 text-xs text-gray-700">
+                                        <li>Discreet and private positioning</li>
+                                        <li>Respectful, indirect communication</li>
+                                        <li>Family and community context awareness</li>
+                                        <li>Local values integration</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Benefit 5 -->
+                        <div class="benefit-card bg-white p-5 rounded-xl shadow-lg border-l-4 border-ilec-accent">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="zap" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <h3 class="text-lg font-heading font-bold text-gray-900">Emotional Continuity</h3>
+                                </div>
+                                <i data-lucide="chevron-right" class="benefit-arrow w-4 h-4 text-ilec-primary flex-shrink-0"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Build a consistent relationship with a companion who understands your emotional context over time.
+                                </p>
+                                <div class="bg-ilec-primary/5 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-ilec-primary text-sm mb-1">Relationship building:</h4>
+                                    <ul class="list-disc pl-4 space-y-1 text-xs text-gray-700">
+                                        <li>Memory of previous conversations</li>
+                                        <li>Understanding of your patterns</li>
+                                        <li>Consistent personality and tone</li>
+                                        <li>Gentle check-ins and follow-ups</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Benefit 6 -->
+                        <div class="benefit-card bg-white p-5 rounded-xl shadow-lg border-l-4 border-ilec-accent">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="shield" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <h3 class="text-lg font-heading font-bold text-gray-900">Clear Ethical Boundaries</h3>
+                                </div>
+                                <i data-lucide="chevron-right" class="benefit-arrow w-4 h-4 text-ilec-primary flex-shrink-0"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <p class="text-gray-600 text-sm mb-3">
+                                    We maintain strict boundaries between companionship and clinical care—no blurry lines.
+                                </p>
+                                <div class="bg-ilec-primary/5 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-ilec-primary text-sm mb-1">Our clear boundaries:</h4>
+                                    <ul class="list-disc pl-4 space-y-1 text-xs text-gray-700">
+                                        <li>No diagnosis or treatment</li>
+                                        <li>No medical advice</li>
+                                        <li>No crisis intervention</li>
+                                        <li>Clear redirection to professionals</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA after benefits -->
+                    <div class="text-center mt-12">
+                        <a href="#" data-page="join" class="cta-button inline-block">
+                            <i data-lucide="sparkles" class="w-5 h-5 inline mr-2"></i>
+                            Experience i.lec for Yourself
+                        </a>
+                        <p class="text-gray-500 text-sm mt-4">No credit card required • Start with our free tier</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Who It's For -->
+            <section id="audience" class="py-16 bg-ilec-secondary">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-4 text-center">
+                        Who i.lec Is For
+                    </h2>
+                    <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                        Designed for anyone who needs a space to process thoughts, not necessarily clinical intervention
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white p-8 rounded-2xl shadow-xl">
+                            <h3 class="text-2xl font-heading font-bold text-ilec-primary mb-6 flex items-center">
+                                <i data-lucide="user" class="w-6 h-6 mr-3"></i>
+                                Our Primary Users
+                            </h3>
+                            <p class="text-lg text-gray-700 mb-6">
+                                i.lec is designed for functioning individuals who experience emotional overload in their daily lives but don't want or need clinical labels.
+                            </p>
+                            <ul class="space-y-4">
+                                <li class="flex items-start bg-gray-50 p-4 rounded-lg">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="graduation-cap" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <div>
+                                        <strong class="text-gray-800">University Students (18-25):</strong>
+                                        <p class="text-gray-600 text-sm mt-1">"Between exams, social pressure, and future anxiety, my head is constantly full. I need somewhere to put these thoughts without it becoming a 'mental health issue.'"</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start bg-gray-50 p-4 rounded-lg">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="briefcase" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <div>
+                                        <strong class="text-gray-800">Early-Career Professionals:</strong>
+                                        <p class="text-gray-600 text-sm mt-1">"Work stress accumulates, but I don't want therapy. I just need to process my day without judgment before I can relax."</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start bg-gray-50 p-4 rounded-lg">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="users" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <div>
+                                        <strong class="text-gray-800">Anyone Feeling Emotionally Full:</strong>
+                                        <p class="text-gray-600 text-sm mt-1">"Life gets overwhelming sometimes. I don't need a diagnosis, just a safe space to sort through my thoughts."</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-2xl shadow-xl">
+                            <h3 class="text-2xl font-heading font-bold text-ilec-primary mb-6 flex items-center">
+                                <i data-lucide="building" class="w-6 h-6 mr-3"></i>
+                                Institutional Applications
+                            </h3>
+                            <p class="text-lg text-gray-700 mb-6">
+                                i.lec can complement existing support systems in various settings as a preventive, reflective tool.
+                            </p>
+                            <ul class="space-y-4">
+                                <li class="flex items-start bg-gray-50 p-4 rounded-lg">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="school" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <div>
+                                        <strong class="text-gray-800">Educational Institutions:</strong>
+                                        <p class="text-gray-600 text-sm mt-1">Provide students with 24/7 emotional outlet, reducing pressure on counseling services and catching issues before escalation.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start bg-gray-50 p-4 rounded-lg">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="briefcase" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <div>
+                                        <strong class="text-gray-800">Workplace Wellness Programs:</strong>
+                                        <p class="text-gray-600 text-sm mt-1">Support employee emotional well-being with discreet, always-available companionship that complements EAP services.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start bg-gray-50 p-4 rounded-lg">
+                                    <div class="p-2 bg-ilec-primary/10 rounded-lg mr-3">
+                                        <i data-lucide="home" class="w-5 h-5 text-ilec-primary"></i>
+                                    </div>
+                                    <div>
+                                        <strong class="text-gray-800">Community Centers & NGOs:</strong>
+                                        <p class="text-gray-600 text-sm mt-1">Extend emotional support reach in communities where clinical resources are limited or stigmatized.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vision & Impact -->
+            <section id="vision" class="py-16 bg-gradient-to-r from-gray-50 to-ilec-secondary/30">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7">
+                            <span class="inline-block px-4 py-1 mb-4 text-sm font-semibold rounded-full bg-ilec-primary text-white">OUR VISION & IMPACT</span>
+                            <h2 class="text-4xl font-heading font-bold text-gray-900 mb-6">
+                                Normalizing Emotional Wellness in Brunei & Beyond
+                            </h2>
+                            <p class="text-xl text-gray-600 mb-6">
+                                i.lec contributes to <b>Brunei's Wawasan 2035 Goal 2: A High Quality of Life</b> and <b>UN Sustainable Development Goal 3: Good Health and Well-being</b> by creating accessible emotional infrastructure that prevents issues before they become clinical.
+                            </p>
+                            
+                            <div class="wawasan-card">
+                                <h3 class="text-2xl font-heading font-bold text-white mb-4 flex items-center">
+                                    <i data-lucide="flag" class="w-6 h-6 mr-3"></i>
+                                    Wawasan 2035 Alignment
+                                </h3>
+                                <p class="text-white/90 mb-4">
+                                    We directly support Brunei's national vision by:
+                                </p>
+                                <ul class="space-y-2 text-white/90">
+                                    <li class="flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-ilec-secondary mr-2 mt-0.5 flex-shrink-0"></i>
+                                        Creating preventive emotional outlets before issues require clinical intervention
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-ilec-secondary mr-2 mt=0.5 flex-shrink-0"></i>
+                                        Supporting workforce productivity through emotional resilience
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-ilec-secondary mr-2 mt=0.5 flex-shrink-0"></i>
+                                        Promoting holistic well-being across all segments of society
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-ilec-secondary mr-2 mt=0.5 flex-shrink-0"></i>
+                                        Reducing burden on national healthcare systems
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5">
+                            <div class="bg-white p-8 rounded-2xl shadow-2xl">
+                                <div class="flex flex-col items-center text-center">
+                                    <div class="p-4 bg-ilec-primary/10 rounded-full mb-6">
+                                        <i data-lucide="target" class="w-12 h-12 text-ilec-primary"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
+                                        UN Sustainable Development Goal 3
+                                    </h3>
+                                    <p class="text-gray-700 mb-6">
+                                        <strong>"Ensure healthy lives and promote well-being for all at all ages"</strong>
+                                    </p>
+                                    <div class="text-left w-full space-y-4">
+                                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                                            <div class="p-2 bg-green-100 rounded-lg mr-3">
+                                                <i data-lucide="check" class="w-5 h-5 text-green-600"></i>
+                                            </div>
+                                            <span class="text-gray-700">Preventive emotional wellness support</span>
+                                        </div>
+                                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                                            <div class="p-2 bg-green-100 rounded-lg mr-3">
+                                                <i data-lucide="check" class="w-5 h-5 text-green-600"></i>
+                                            </div>
+                                            <span class="text-gray-700">Accessible emotional outlets for all</span>
+                                        </div>
+                                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                                            <div class="p-2 bg-green-100 rounded-lg mr-3">
+                                                <i data-lucide="check" class="w-5 h-5 text-green-600"></i>
+                                            </div>
+                                            <span class="text-gray-700">Mental health awareness without stigma</span>
+                                        </div>
+                                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                                            <div class="p-2 bg-green-100 rounded-lg mr-3">
+                                                <i data-lucide="check" class="w-5 h-5 text-green-600"></i>
+                                            </div>
+                                            <span class="text-gray-700">Digital innovation for emotional well-being</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8 bg-gradient-to-r from-ilec-primary to-ilec-accent p-6 rounded-2xl text-white text-center">
+                                <h4 class="text-xl font-heading font-bold mb-3">Our Impact Vision</h4>
+                                <div class="grid grid-cols-2 gap-6 mb-4">
+                                    <div class="bg-white/20 p-3 rounded-lg">
+                                        <div class="text-2xl font-bold">Prevention</div>
+                                        <div class="text-sm opacity-90">Not intervention</div>
+                                    </div>
+                                    <div class="bg-white/20 p-3 rounded-lg">
+                                        <div class="text-2xl font-bold">Companionship</div>
+                                        <div class="text-sm opacity-90">Not clinical care</div>
+                                    </div>
+                                </div>
+                                <p class="text-sm opacity-90">
+                                    Making emotional wellness normal, private, and accessible throughout Bruneian society
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="py-16 bg-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-4xl font-heading font-bold text-gray-900 mb-4 text-center">
+                        Frequently Asked Questions
+                    </h2>
+                    <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                        Common questions about i.lec and how we provide emotional support
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3 class="text-lg font-semibold text-gray-900">What exactly is i.lec?</h3>
+                                <i data-lucide="chevron-down" class="faq-arrow w-5 h-5 text-gray-500 transition-transform"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-600">i.lec is a private emotional companion powered by AI. Think of us as a safe, judgment-free space where you can vent, unload thoughts, and reflect. We're not therapists or medical professionals—we're compassionate listeners available whenever you need to process your day or emotions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3 class="text-lg font-semibold text-gray-900">How is i.lec different from therapy or counseling?</h3>
+                                <i data-lucide="chevron-down" class="faq-arrow w-5 h-5 text-gray-500 transition-transform"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-600">Therapy involves diagnosis, treatment plans, and clinical interventions for mental health conditions. i.lec provides non-clinical companionship—we listen, reflect, and provide emotional support without diagnosis or treatment. We're like a compassionate friend who's always available to listen, not a medical professional.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3 class="text-lg font-semibold text-gray-900">Is my privacy protected?</h3>
+                                <i data-lucide="chevron-down" class="faq-arrow w-5 h-5 text-gray-500 transition-transform"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-600">Absolutely. Your conversations are not reviewed by humans. We use end-to-end encryption and don't store personal conversations long-term. You remain in complete control of your data—you can delete conversation history at any time. Privacy is foundational to our design.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3 class="text-lg font-semibold text-gray-900">What happens if I'm in crisis or need professional help?</h3>
+                                <i data-lucide="chevron-down" class="faq-arrow w-5 h-5 text-gray-500 transition-transform"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-600">i.lec is not a crisis service. If you express thoughts of self-harm, harm to others, or are in immediate danger, we'll provide clear directions to appropriate emergency services and encourage you to seek professional help immediately. We maintain strict boundaries about redirecting to appropriate care.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3 class="text-lg font-semibold text-gray-900">Is i.lec available in Brunei and other SEA countries?</h3>
+                                <i data-lucide="chevron-down" class="faq-arrow w-5 h-5 text-gray-500 transition-transform"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p class="text-gray-600">Yes, i.lec is designed with deep cultural sensitivity for Brunei and Southeast Asian contexts. We understand local values around privacy, family, and emotional expression. Our communication style is discreet, respectful, and appropriate for these cultural contexts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-12">
+                        <p class="text-gray-600 mb-4">Have more questions?</p>
+                        <a href="#contact" class="text-ilec-primary font-semibold hover:underline">
+                            Contact our team for more information
+                            <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- About Page (Placeholder) - Note: This internal page won't be used since About links to about.html -->
+    <div id="about-page" class="page">
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl font-heading font-bold text-ilec-primary mb-6">About i.lec</h1>
+                <p class="text-xl text-gray-600 mb-8">This page is coming soon!</p>
+                <p class="text-gray-600 mb-8">Learn more about our mission, team, and the story behind i.lec.</p>
+                <a href="#" data-page="home" class="cta-button">
+                    <i data-lucide="arrow-left" class="w-5 h-5 inline mr-2"></i>
+                    Back to Home
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Resources Page (Placeholder) -->
+    <div id="resources-page" class="page">
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl font-heading font-bold text-ilec-primary mb-6">Resources</h1>
+                <p class="text-xl text-gray-600 mb-8">This page is coming soon!</p>
+                <p class="text-gray-600 mb-8">Access helpful articles, guides, and tools for emotional wellness.</p>
+                <a href="#" data-page="home" class="cta-button">
+                    <i data-lucide="arrow-left" class="w-5 h-5 inline mr-2"></i>
+                    Back to Home
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Assessment Page (Placeholder) -->
+    <div id="assessment-page" class="page">
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl font-heading font-bold text-ilec-primary mb-6">Emotional Wellness Assessment</h1>
+                <p class="text-xl text-gray-600 mb-8">This page is coming soon!</p>
+                <p class="text-gray-600 mb-8">Take our assessment to understand your emotional patterns and needs.</p>
+                <a href="#" data-page="home" class="cta-button">
+                    <i data-lucide="arrow-left" class="w-5 h-5 inline mr-2"></i>
+                    Back to Home
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Join Page -->
+    <div id="join-page" class="page">
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-heading font-bold text-ilec-primary mb-4">Join i.lec</h1>
+                    <p class="text-xl text-gray-600">Begin your journey with your private emotional companion</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-gray-50 to-ilec-secondary/30 p-8 rounded-2xl shadow-lg mb-12">
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mb-6 text-center">How to Get Started</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                        <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                            <div class="w-16 h-16 bg-ilec-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl font-bold text-ilec-primary">1</span>
+                            </div>
+                            <h3 class="text-lg font-heading font-bold text-gray-900 mb-3">Share Your Thoughts</h3>
+                            <p class="text-gray-600">Tell us what you're looking for in an emotional companion</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                            <div class="w-16 h-16 bg-ilec-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl font-bold text-ilec-primary">2</span>
+                            </div>
+                            <h3 class="text-lg font-heading font-bold text-gray-900 mb-3">Get Early Access</h3>
+                            <p class="text-gray-600">We'll notify you when i.lec launches in your area</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                            <div class="w-16 h-16 bg-ilec-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl font-bold text-ilec-primary">3</span>
+                            </div>
+                            <h3 class="text-lg font-heading font-bold text-gray-900 mb-3">Start Your Journey</h3>
+                            <p class="text-gray-600">Begin with our free tier and experience compassionate listening</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <!-- UPDATED: Changed to new Google Form URL in the Join page -->
+                        <a href="https://forms.gle/Lma9ZoBrmigXC1xZA" target="_blank" rel="noopener noreferrer" class="cta-button inline-block">
+                            <i data-lucide="edit" class="w-5 h-5 inline mr-2"></i>
+                            Share Your Thoughts Form
+                        </a>
+                        <p class="text-gray-500 text-sm mt-4">Takes 2-3 minutes • No commitment required</p>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <h3 class="text-xl font-heading font-bold text-gray-900 mb-4">Have questions before joining?</h3>
+                    <p class="text-gray-600 mb-6">Contact our team for more information about i.lec</p>
+                    <a href="mailto:talktoilec@gmail.com" class="text-ilec-primary font-semibold hover:underline">
+                        talktoilec@gmail.com
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Privacy Policy Page -->
+    <div id="privacy-page" class="page">
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="legal-content">
+                    <h1 class="text-4xl font-heading font-bold text-ilec-primary mb-6">Privacy Policy</h1>
+                    <p class="text-gray-600 mb-6"><strong>Last updated: October 2025</strong></p>
+                    
+                    <div class="disclaimer-box mb-8">
+                        <p class="text-amber-800">
+                            <strong>Important:</strong> i.lec is not a therapist, doctor, or medical service. It does not diagnose, treat, or provide clinical advice. i.lec exists as a private space to talk, vent, and reflect.
+                        </p>
+                    </div>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt-8 mb=4">Information We Collect</h2>
+                    <p class="mb-4">We may collect the following types of information:</p>
+                    <ul class="list-disc pl-6 mb-6">
+                        <li><strong>Conversation Data:</strong> What you choose to share with i.lec for the purpose of providing emotional companionship.</li>
+                        <li><strong>Usage Information:</strong> Technical details like browser type, device, and IP address to improve platform performance.</li>
+                        <li><strong>Account Information:</strong> Basic details if you choose to create an account for continuity.</li>
+                    </ul>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt=8 mb-4">How We Use Your Information</h2>
+                    <p class="mb-4">Your information helps us to:</p>
+                    <ul class="list-disc pl-6 mb-6">
+                        <li>Provide consistent emotional companionship</li>
+                        <li>Maintain conversation continuity for your benefit</li>
+                        <li>Improve the i.lec companion experience</li>
+                        <li>Ensure platform security and prevent misuse</li>
+                    </ul>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt-8 mb-4">Data Security & Privacy</h2>
+                    <p class="mb-6"><strong>Your conversations are not reviewed by humans.</strong> We implement strict measures to protect your data from unauthorized access. Sensitive data is encrypted both in transit and at rest.</p>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt-8 mb-4">Your Control</h2>
+                    <p class="mb-6">You remain in complete control of your data. You can delete conversation history at any time. To exercise data rights, contact us at <a href="mailto:talktoilec@gmail.com" class="text-ilec-primary hover:underline">talktoilec@gmail.com</a>.</p>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt-8 mb-4">Emergency Situations</h2>
+                    <p class="mb-6">i.lec is not a crisis service. If you are in immediate danger or feel unsafe, please contact local emergency services or a trusted person immediately.</p>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt-8 mb-4">Contact Us</h2>
+                    <p class="mb-6">If you have any questions about this Privacy Policy, reach out to us at <a href="mailto:talktoilec@gmail.com" class="text-ilec-primary hover:underline">talktoilec@gmail.com</a>.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Terms of Service Page -->
+    <div id="terms-page" class="page">
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="legal-content">
+                    <h1 class="text-4xl font-heading font-bold text-ilec-primary mb=6">Terms of Service</h1>
+                    <p class="text-gray-600 mb-6"><strong>Last updated: October 2025</strong></p>
+                    
+                    <div class="disclaimer-box mb-8">
+                        <p class="text-amber-800">
+                            <strong>Important Disclaimer:</strong> i.lec is not a therapist, doctor, or medical service. It does not diagnose, treat, or provide clinical advice. i.lec exists as a private space to talk, vent, and reflect. If you are in immediate danger or feel unsafe, please contact local emergency services or a trusted person immediately.
+                        </p>
+                    </div>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt-8 mb-4">1. Acceptance of Terms</h2>
+                    <p class="mb-6">By using i.lec, you confirm that you are at least 16 years old (or have parental consent where required) and agree to these terms. If you do not agree, you must stop using the platform.</p>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt-8 mb-4">2. Nature of Service</h2>
+                    <p class="mb-6">i.lec provides a non-clinical emotional companion service—a private space for emotional expression, reflection, and unloading thoughts. This is not a substitute for professional medical advice, diagnosis, or treatment.</p>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt-8 mb-4">3. User Responsibilities</h2>
+                    <ul class="list-disc pl-6 mb-6">
+                        <li>You agree to use i.lec only for its intended purpose as an emotional companion.</li>
+                        <li>You understand i.lec is not a crisis or emergency service.</li>
+                        <li>You must not misuse the platform by attempting to hack, disrupt, or exploit it.</li>
+                    </ul>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt-8 mb-4">4. Privacy</h2>
+                    <p class="mb-6">Your use of i.lec is also governed by our Privacy Policy, which explains how we collect and use your data.</p>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt-8 mb-4">5. Limitation of Liability</h2>
+                    <p class="mb-6">i.lec is provided as an emotional companion tool. We are not liable for any decisions made based on interactions with the platform. For medical or psychological concerns, consult qualified professionals.</p>
+                    
+                    <h2 class="text-2xl font-heading font-bold text-ilec-primary mt-8 mb-4">6. Contact</h2>
+                    <p class="mb-6">If you have questions about these Terms, contact us at <a href="mailto:talktoilec@gmail.com" class="text-ilec-primary hover:underline">talktoilec@gmail.com</a>.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer with Contact Section -->
+    <footer id="contact" class="bg-gray-900 py-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-heading font-bold text-ilec-secondary mb-4">i.lec</h3>
+                    <p class="text-gray-400 mb-4">
+                        Your private emotional companion. A safe space to put your thoughts, so you don't carry them alone.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-ilec-primary transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-ilec-primary transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-ilec-primary transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-ilec-primary transition-colors">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-heading font-bold text-ilec-secondary mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" data-page="home" class="text-gray-400 hover:text-ilec-primary transition-colors">Home</a></li>
+                        <!-- UPDATED: Changed to about.html in footer -->
+                        <li><a href="about.html" class="text-gray-400 hover:text-ilec-primary transition-colors">About</a></li>
+                        <li><a href="#" data-page="join" class="text-gray-400 hover:text-ilec-primary transition-colors">Join</a></li>
+                        <li><a href="#" data-page="privacy" class="text-gray-400 hover:text-ilec-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" data-page="terms" class="text-gray-400 hover:text-ilec-primary transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-heading font-bold text-ilec-secondary mb-4">Coming Soon</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" data-page="resources" class="text-gray-400 hover:text-ilec-primary transition-colors">Resources</a></li>
+                        <li><a href="#" data-page="assessment" class="text-gray-400 hover:text-ilec-primary transition-colors">Assessment</a></li>
+                        <li class="text-gray-500">Mobile App</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-heading font-bold text-ilec-secondary mb-4">Contact Us</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i data-lucide="mail" class="w-5 h-5 text-ilec-primary mr-2"></i>
+                            <a href="mailto:talktoilec@gmail.com" class="text-gray-400 hover:text-ilec-primary transition-colors">
+                                talktoilec@gmail.com
+                            </a>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-ilec-primary mr-2"></i>
+                            <span class="text-gray-400">Brunei Darussalam</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <!-- UPDATED: Changed to new Google Form URL in footer -->
+                        <a href="https://forms.gle/Lma9ZoBrmigXC1xZA" target="_blank" rel="noopener noreferrer" class="inline-block px-4 py-2 bg-ilec-primary text-white rounded-full text-sm font-semibold hover:bg-ilec-primary/90 transition-colors">
+                            Share Your Thoughts
+                        </a>
+                    </div>
                 </div>
             </div>
             
-            <div class="footer-section">
-                <h3>Legal</h3>
-                <ul class="legal-links">
-                    <li><a href="#privacy">Privacy Policy</a></li>
-                    <li><a href="#terms">Terms of Service</a></li>
-                    <li><a href="#cookies">Cookie Policy</a></li>
-                    <li><a href="#accessibility">Accessibility Statement</a></li>
-                </ul>
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center">
+                <p class="text-sm text-gray-500">&copy; 2025 i.lec. All rights reserved.</p>
+                <p class="text-xs text-gray-600 mt-2">
+                    i.lec is a non-clinical emotional companion platform. Not a medical or therapeutic service.
+                </p>
             </div>
         </div>
-        
-        <div class="copyright">
-            <p>&copy; 2025 i.lec - Intelligent Learning Empathetic Caregiver. All rights reserved.</p>
-            <p style="margin-top: 0.5rem;">"We've Got You. Here for your healing, not just your hustle."</p>
-        </div>
-    </div>
-</footer>
-
-    <script>
-    // Animate acronym letters
-    document.addEventListener('DOMContentLoaded', function() {
-        const letters = document.querySelectorAll('.acronym-letter');
-        letters.forEach((letter, index) => {
-            letter.style.animationDelay = `${index * 0.2}s`;
-        });
-
-        // Add smooth scrolling and active nav highlighting - Only Home stays active
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                // Only highlight Home button
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    if (link.getAttribute('href') !== '#home') {
-                        link.classList.remove('active');
-                    }
-                });
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Highlight Home by default
-        document.querySelector('a[href="#home"]').classList.add('active');
-
-        // Add hover effects to infographic items
-        const infographicItems = document.querySelectorAll('.infographic-item');
-        infographicItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                const icon = this.querySelector('.infographic-icon');
-                icon.style.transform = 'scale(1.1) rotate(5deg)';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                const icon = this.querySelector('.infographic-icon');
-                icon.style.transform = 'scale(1) rotate(0deg)';
-            });
-        });
-
-        // Keep Home highlighted on scroll
-        window.addEventListener('scroll', function() {
-            const homeLink = document.querySelector('a[href="#home"]');
-            const sections = document.querySelectorAll('section');
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            // Only highlight Home, remove from others
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                if (link.getAttribute('href') !== '#home') {
-                    link.classList.remove('active');
-                }
-            });
-            
-            // Only add active class to Home if we're near top
-            if (scrollY < 100) {
-                homeLink.classList.add('active');
-            }
-        });
-    });
-</script>
+    </footer>
+   
 </body>
 </html>
